@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Affiliate;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+
+use App\Rules\TrueValue;
 
 class RegisteredUserController extends Controller
 {
@@ -31,19 +34,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
+        //return dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'username' => 'required|string|lowercase|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'privacy_policy' => ['required', new TrueValue]
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
+            'role' => 'affiliate'
         ]);
 
-        event(new Registered($user));
+        Affiliate::create(
+                [
+                'user_id' => $user->id,
+                'status' => 'pending'
+                ]);
+
+        //event(new Registered($user));
 
         Auth::login($user);
 

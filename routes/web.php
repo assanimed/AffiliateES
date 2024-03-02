@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,32 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+
+    return redirect(RouteServiceProvider::HOME);
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->middleware(['auth', 'approved']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'approved'])->name('dashboard');
+
+
+
+Route::get('/waitlist', function(){
+    if(Auth()->user()->isAdmin() || Auth()->user()->affiliate->status === "approved"){
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+
+    return Inertia::render("Waitlist");
+
+})->middleware(['auth'])->name("waitlist");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
