@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Affiliate;
+use App\Models\Profile;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -59,6 +60,10 @@ class User extends Authenticatable
 
     public function affiliate(): hasOne{
         return $this->hasOne(Affiliate::class);
+       }
+
+       public function profile(): hasOne{
+        return $this->hasOne(Profile::class);
        }
 
 

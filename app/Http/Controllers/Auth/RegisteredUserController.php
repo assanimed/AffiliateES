@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
         //return dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|lowercase|max:255|unique:'.User::class,
+            'username' => 'required|string|lowercase|max:255|min:5|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'privacy_policy' => ['required', new TrueValue]
         ]);

@@ -1,0 +1,80 @@
+[
+    {
+        "name": "ahmed",
+        "role": "affiliate",
+        "username": "kanet_loren@gmail.com",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "kanet_loren@gmail.com",
+            "phone_number": "+78945646",
+            "address": "sme where 56878945",
+            "country": "USA",
+            "city": "New York"
+        }
+    },
+    {
+        "name": "james",
+        "role": "affiliate",
+        "username": "james758",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "",
+            "phone_number": "+7894546978456789",
+            "address": "sme where 8",
+            "country": "Morocco",
+            "city": "Tettouan"
+        }
+    },
+    {
+        "name": "Said khaldi",
+        "role": "affiliate",
+        "username": "khaldi@yahoo.com",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "khaldi@yahoo.com",
+            "phone_number": "+212678854458",
+            "address": "sme where 8745",
+            "country": "Morocco",
+            "city": "Casablanca"
+        }
+    },
+    {
+        "name": "Hassan Ayadi",
+        "role": "affiliate",
+        "username": "ayadi_hassan",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "ayadi@gmail.com",
+            "phone_number": "+21287451",
+            "address": "Tetoaun 92000",
+            "country": "Morocco",
+            "city": "Tetouan"
+        }
+    },
+    {
+        "name": "Karim hassni",
+        "role": "affiliate",
+        "username": "hassni@gmail.com",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "hassni@gmail.com",
+            "phone_number": "++21789456",
+            "address": "flen 8956",
+            "country": "Morocco",
+            "city": "Agadir"
+        }
+    },
+    {
+        "name": "soufian flen",
+        "role": "affiliate",
+        "username": "flen@yahoo.com",
+        "password": "KEOPM!_98548",
+        "profile": {
+            "email": "flen@yahoo.com",
+            "phone_number": "+212879456",
+            "address": "sme keo 845",
+            "country": "Morocco",
+            "city": "Laayoon"
+        }
+    }
+]

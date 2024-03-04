@@ -27,11 +27,66 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-})->middleware(['auth', 'approved']);
+})->middleware(['auth', 'approved'])->name("home");
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Dashboard');
+    }
+    return Inertia::render('Affiliate/Dashboard');
+
+
 })->middleware(['auth', 'approved'])->name('dashboard');
+
+
+Route::get('/offers', function () {
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Offers');
+    }
+    return Inertia::render('Affiliate/Offers');
+})->middleware(['auth', 'approved'])->name('offers');
+
+Route::get('/leads', function () {
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Leads');
+    }
+    return Inertia::render('Affiliate/Leads');
+
+
+})->middleware(['auth', 'approved'])->name('leads');
+
+Route::get('/users', function () {
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Users');
+    }
+    return Inertia::render('Affiliate/Users');
+
+})->middleware(['auth', 'approved'])->name('users');
+
+Route::get('/settings', function () {
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Settings');
+    }
+    return Inertia::render('Affiliate/Settings');
+
+
+})->middleware(['auth', 'approved'])->name('settings');
+
+
+Route::get('/profile', function () {
+    if(Auth()->user()->isAdmin()){
+        return Inertia::render('Admin/Profile');
+    }
+    return Inertia::render('Affiliate/Profile');
+
+
+})->middleware(['auth', 'approved'])->name('settings');
+
+
+
+Route::get('/check', function () {
+    return Inertia::render('Check');
+});
 
 
 

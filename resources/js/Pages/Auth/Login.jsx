@@ -89,7 +89,7 @@ export default function Login({ status, canResetPassword }) {
                             </div>
                         </div>
 
-                        <div className="mb-3 mt-4">
+                        <div className="mb-3 mt-6">
                             <Checkbox
                                 isSelected={data?.remember}
                                 onValueChange={(checked) =>
