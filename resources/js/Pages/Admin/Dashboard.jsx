@@ -7,6 +7,7 @@ const Dashboard = () => {
     const {
         props: { auth },
     } = usePage();
+
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Dashboard" />

@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Affiliate;
 use App\Models\Profile;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -49,6 +49,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $with = ['avatar', 'token'];
+
     public function isAffiliate(){
         return $this->role == "affiliate";
     }
@@ -62,9 +64,32 @@ class User extends Authenticatable
         return $this->hasOne(Affiliate::class);
        }
 
-       public function profile(): hasOne{
+    public function profile(): hasOne{
         return $this->hasOne(Profile::class);
        }
 
+       public function token(): hasOne{
+        return $this->hasOne(ApiToken::class);
+       }
 
+       public function avatar(): hasOne{
+        return $this->hasOne(Avatar::class);
+       }
+
+       public function coupon(): hasOne{
+        return $this->hasOne(Coupon::class);
+       }
+
+
+       public function leads(): HasMany{
+        return $this->hasMany(Lead::class);
+       }
+
+       public function payouts(): HasMany{
+        return $this->hasMany(Payout::class);
+       }
+
+       public function hasRole(string $role){
+        return $this->role === $role;
+       }
 }

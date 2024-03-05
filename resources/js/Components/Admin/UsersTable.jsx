@@ -10,12 +10,18 @@ import {
     Chip,
     Tooltip,
     getKeyValue,
+    Pagination,
+    PaginationItem,
+    PaginationCursor,
 } from "@nextui-org/react";
+import { useGetAffiliatesQuery } from "@/redux/services/usersApi";
+import { useDispatch, useSelector } from "react-redux";
 
 const columns = [
-    { name: "NAME", uid: "name" },
-    { name: "ROLE", uid: "role" },
+    { name: "USER", uid: "name" },
+    { name: "JOINED AT", uid: "joined" },
     { name: "STATUS", uid: "status" },
+    { name: "EARNING", uid: "earning" },
     { name: "ACTIONS", uid: "actions" },
 ];
 const users = [
@@ -23,6 +29,7 @@ const users = [
         id: 1,
         name: "Tony Reichert",
         role: "CEO",
+        joined: new Date().toDateString(),
         team: "Management",
         status: "active",
         age: "29",
@@ -33,8 +40,9 @@ const users = [
         id: 2,
         name: "Zoey Lang",
         role: "Technical Lead",
+        joined: new Date().toDateString(),
         team: "Development",
-        status: "paused",
+        status: "banned",
         age: "25",
         avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
         email: "zoey.lang@example.com",
@@ -43,6 +51,7 @@ const users = [
         id: 3,
         name: "Jane Fisher",
         role: "Senior Developer",
+        joined: new Date().toDateString(),
         team: "Development",
         status: "active",
         age: "22",
@@ -53,9 +62,10 @@ const users = [
         id: 4,
         name: "William Howard",
         role: "Community Manager",
+        joined: new Date().toDateString(),
         team: "Marketing",
         status: "vacation",
-        age: "28",
+        earning: 111,
         avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
         email: "william.howard@example.com",
     },
@@ -63,47 +73,7 @@ const users = [
         id: 5,
         name: "Kristen Copper",
         role: "Sales Manager",
-        team: "Sales",
-        status: "active",
-        age: "24",
-        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-        email: "kristen.cooper@example.com",
-    },
-    {
-        id: 6,
-        name: "Kristen Copper",
-        role: "Sales Manager",
-        team: "Sales",
-        status: "active",
-        age: "24",
-        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-        email: "kristen.cooper@example.com",
-    },
-    {
-        id: 7,
-        name: "Kristen Copper",
-        role: "Sales Manager",
-        team: "Sales",
-        status: "active",
-        age: "24",
-        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-        email: "kristen.cooper@example.com",
-    },
-    ,
-    {
-        id: 8,
-        name: "Kristen Copper",
-        role: "Sales Manager",
-        team: "Sales",
-        status: "active",
-        age: "24",
-        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-        email: "kristen.cooper@example.com",
-    },
-    {
-        id: 9,
-        name: "Kristen Copper",
-        role: "Sales Manager",
+        joined: new Date().toDateString(),
         team: "Sales",
         status: "active",
         age: "24",
@@ -113,12 +83,26 @@ const users = [
 ];
 
 const statusColorMap = {
-    active: "success",
-    paused: "danger",
-    vacation: "warning",
+    active: "primary",
+    pending: "success",
+    banned: "danger",
 };
 
 export default function UsersTable() {
+    const dispatch = useDispatch();
+    const {
+        sortType,
+        sortBy,
+        searchKey,
+        status,
+        currentPage,
+        limit,
+        totalPages,
+    } = useSelector((state) => ({
+        ...state?.filter,
+        ...state?.paginate,
+    }));
+
     const renderCell = React.useCallback((user, columnKey) => {
         const cellValue = user[columnKey];
 
@@ -133,7 +117,18 @@ export default function UsersTable() {
                         {user.email}
                     </User>
                 );
-            case "role":
+            case "earning":
+                return (
+                    <div className="flex flex-col">
+                        <p className="text-bold text-sm capitalize">
+                            <span className="font-bold text-md">
+                                {" "}
+                                &#36; {cellValue}
+                            </span>
+                        </p>
+                    </div>
+                );
+            case "joined":
                 return (
                     <div className="flex flex-col">
                         <p className="text-bold text-sm capitalize">
@@ -166,27 +161,48 @@ export default function UsersTable() {
         }
     }, []);
 
+    const { data, isSuccess } = useGetAffiliatesQuery({
+        status,
+        limit,
+        page: currentPage,
+        search: searchKey,
+        sortBy: sortBy,
+        sortType,
+    });
+
+    if (isSuccess) {
+    }
+
     return (
-        <Table aria-label="Example table with custom cells" shadow="none">
-            <TableHeader columns={columns}>
-                {(column) => (
-                    <TableColumn
-                        key={column.uid}
-                        align={column.uid === "actions" ? "center" : "start"}
-                    >
-                        {column.name}
-                    </TableColumn>
-                )}
-            </TableHeader>
-            <TableBody items={users}>
-                {(item) => (
-                    <TableRow key={item.id}>
-                        {(columnKey) => (
-                            <TableCell>{renderCell(item, columnKey)}</TableCell>
-                        )}
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+        <div className="">
+            <Table aria-label="Example table with custom cells" shadow="none">
+                <TableHeader columns={columns}>
+                    {(column) => (
+                        <TableColumn
+                            key={column.uid}
+                            align={
+                                column.uid === "actions" ? "center" : "start"
+                            }
+                        >
+                            {column.name}
+                        </TableColumn>
+                    )}
+                </TableHeader>
+                <TableBody items={users}>
+                    {(item) => (
+                        <TableRow key={item.id}>
+                            {(columnKey) => (
+                                <TableCell>
+                                    {renderCell(item, columnKey)}
+                                </TableCell>
+                            )}
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+            <div className="flex justify-end px-14 py-2">
+                <Pagination showControls total={10} initialPage={1} />
+            </div>
+        </div>
     );
 }

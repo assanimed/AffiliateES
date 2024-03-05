@@ -43,8 +43,8 @@ const Header = () => {
                             <button as="button">
                                 <Avatar
                                     color="primary"
-                                    className="border-2 border-indigo-400"
-                                    src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+                                    className="border-2 border-indigo-400 bg-indigo-300"
+                                    src="http://localhost:7000/storage/default.png"
                                 />
                             </button>
                         </PopoverTrigger>

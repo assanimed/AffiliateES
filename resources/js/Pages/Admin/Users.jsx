@@ -6,6 +6,7 @@ import { BiHomeAlt } from "react-icons/bi";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 import { HiOutlineUsers } from "react-icons/hi2";
 import UsersTable from "@/Components/Admin/UsersTable";
+import TableFilter from "@/Components/Admin/TableFilter";
 
 const Users = () => {
     const {
@@ -45,7 +46,11 @@ const Users = () => {
             </TopPage>
             <div className="bg-white p-2 mt-5 rounded-md">
                 <div className="px-5 py-2 text-xl font-bold">
-                    <h3>Manager Users</h3>
+                    <h3>Manage Users</h3>
+                </div>
+
+                <div>
+                    <TableFilter />
                 </div>
 
                 <UsersTable />

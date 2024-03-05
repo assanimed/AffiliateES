@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Coupon extends Model
+class Payout extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['coupon', 'user_id'];
+
+    protected $fillable = ['code','amount','status','user_id'];
+
 
     public function user(): BelongsTo {
         return $this->BelongsTo(User::class);

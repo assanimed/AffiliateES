@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Route::get('/', function () {
     ]);
 })->middleware(['auth', 'approved'])->name("home");
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function (Request $request) {
+
+
     if(Auth()->user()->isAdmin()){
         return Inertia::render('Admin/Dashboard');
     }
@@ -55,7 +58,10 @@ Route::get('/leads', function () {
 
 })->middleware(['auth', 'approved'])->name('leads');
 
-Route::get('/users', function () {
+Route::get('/users', function (Request $request) {
+
+
+
     if(Auth()->user()->isAdmin()){
         return Inertia::render('Admin/Users');
     }
