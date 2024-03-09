@@ -225,7 +225,6 @@ class OfferController extends Controller
             $zip->close();
         }
 
-        dd("DOOON");
 
         return response()->download(public_path($zipFileName));
     }

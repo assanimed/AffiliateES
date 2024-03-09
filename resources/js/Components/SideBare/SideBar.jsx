@@ -25,7 +25,7 @@ const SideBar = () => {
                     >
                         <span>
                             <img
-                                src="/storage/Telegram_logo.webp"
+                                src="/icons/Telegram_logo.webp"
                                 alt="telegram log"
                                 className="w-8 h-8"
                             />
