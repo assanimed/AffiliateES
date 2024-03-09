@@ -22,7 +22,7 @@ const NavLinks = () => {
                         }
                     >
                         <NavItem
-                            href={link?.href}
+                            href={`${link?.href}`}
                             label={link?.label}
                             Icon={link?.Icon}
                             isActive={url?.includes(link?.active)}

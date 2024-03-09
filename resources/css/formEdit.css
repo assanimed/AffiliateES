@@ -1,0 +1,5 @@
+form [data-slot*="trigger"]{
+    background-color: #fff;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+}

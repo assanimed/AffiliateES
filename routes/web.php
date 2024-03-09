@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\AssetsController;
+use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -49,34 +56,11 @@ Route::get('/offers', function () {
     return Inertia::render('Affiliate/Offers');
 })->middleware(['auth', 'approved'])->name('offers');
 
-Route::get('/leads', function () {
-    if(Auth()->user()->isAdmin()){
-        return Inertia::render('Admin/Leads');
-    }
-    return Inertia::render('Affiliate/Leads');
-
-
-})->middleware(['auth', 'approved'])->name('leads');
-
-Route::get('/users', function (Request $request) {
 
 
 
-    if(Auth()->user()->isAdmin()){
-        return Inertia::render('Admin/Users');
-    }
-    return Inertia::render('Affiliate/Users');
 
-})->middleware(['auth', 'approved'])->name('users');
-
-Route::get('/settings', function () {
-    if(Auth()->user()->isAdmin()){
-        return Inertia::render('Admin/Settings');
-    }
-    return Inertia::render('Affiliate/Settings');
-
-
-})->middleware(['auth', 'approved'])->name('settings');
+Route::get('/settings', [SettingsController::class, "index"])->middleware(['auth', 'approved'])->name('settings');
 
 
 Route::get('/profile', function () {
@@ -90,13 +74,90 @@ Route::get('/profile', function () {
 
 
 
-Route::get('/check', function () {
-    return Inertia::render('Check');
+Route::get('/users/{user}/avatar', [ AvatarController::class , 'index'])
+        ->name("avatar");
+
+Route::middleware(['auth', 'approved', 'admin'])->prefix('users')->group(function () {
+
+
+    Route::get('/', function (Request $request) {
+        if(!Auth()->user()->isAdmin()){
+            return redirect()->route('home');
+        }
+        return Inertia::render('Admin/Users');
+    })->middleware(['auth', 'approved'])->name('users');
+
+     Route::get('/{user}/edit', function (User $user) {
+
+        $user = User::with(['affiliate', 'profile', 'links'])->find($user->id);
+        return Inertia::render('Admin/UserEdit', ["user" => $user]);
+    });
+
+
+    Route::post('/users/{user}/edit', [UserController::class, 'store'])->name('user.edit');
+    /*
+    Route::get('/user/profile', function () {
+    }); */
+});
+
+
+Route::middleware(['auth', 'approved'])->prefix('offers')->group(function () {
+
+    Route::get('/', [OfferController::class, "index"])->middleware(['auth', 'approved'])->name('offers');
+    Route::get('/new', [OfferController::class, "create"])->middleware(['auth', 'approved', 'admin'])
+        ->middleware(['admin'])
+    ->name('offers.edit');
+
+    Route::post('/', [OfferController::class, "store"])->middleware(['auth', 'approved'])->middleware(['admin'])->name('offers.store');
+
+    Route::get('/{offer}/download', [OfferController::class, "zip"])->middleware(['auth', 'approved'])->name('assets.zip');
+
+
+
+
+
+
+
+    // Route::post('/users/{user}/edit', [UserController::class, 'store'])->name('user.edit');
+    /*
+    Route::get('/user/profile', function () {
+    }); */
+});
+
+Route::middleware(['auth', 'approved'])->prefix('leads')->group(function () {
+
+    Route::get('/', [LeadController::class, "index"])->name('leads');
+    Route::get('/new', [LeadController::class, "create"])->middleware(['admin'])->name('leads.new');
+    Route::get('/{lead}/edit', [LeadController::class, "show"])->middleware(['admin'])->name('leads.show');
+  /*   Route::get('/new', [OfferController::class, "create"])->middleware(['auth', 'approved', 'admin'])
+        ->middleware(['admin'])
+    ->name('offers.edit');
+
+    Route::post('/', [OfferController::class, "store"])->middleware(['auth', 'approved'])->middleware(['admin'])->name('offers.store');
+
+    Route::get('/{offer}/download', [OfferController::class, "zip"])->middleware(['auth', 'approved'])->name('assets.zip');
+
+ */
+
+
+
+
+
+    // Route::post('/users/{user}/edit', [UserController::class, 'store'])->name('user.edit');
+    /*
+    Route::get('/user/profile', function () {
+    }); */
 });
 
 
 
+
+
+
+
 Route::get('/waitlist', function(){
+
+
     if(Auth()->user()->isAdmin() || Auth()->user()->affiliate->status === "approved"){
         return redirect(RouteServiceProvider::HOME);
     }

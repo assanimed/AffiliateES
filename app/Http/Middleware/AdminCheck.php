@@ -16,6 +16,10 @@ class AdminCheck
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->user()->hasRole('admin')) {
+
+            if(!$request->expectsJson()){
+                return redirect()->to('/');
+            }
             return response()->json([
                 'message' => 'Forbidden'
             ], 403);

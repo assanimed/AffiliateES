@@ -12,7 +12,7 @@ class Coupon extends Model
 
     protected $fillable = ['coupon', 'user_id'];
 
-    public function user(): BelongsTo {
-        return $this->BelongsTo(User::class);
+    public function affiliate(): BelongsTo {
+        return $this->BelongsTo(Affiliate::class);
     }
 }

@@ -18,6 +18,10 @@ const Header = () => {
 
     const firstName = auth?.user?.name?.split(" ")[0];
 
+    const avatar = auth?.user?.avatar
+        ? auth?.user?.avatar?.url
+        : "/avatar/default.png";
+
     return (
         <div className="py-6 px-5  w-full">
             <div className="flex justify-between w-full">
@@ -44,7 +48,7 @@ const Header = () => {
                                 <Avatar
                                     color="primary"
                                     className="border-2 border-indigo-400 bg-indigo-300"
-                                    src="http://localhost:7000/storage/default.png"
+                                    src={avatar}
                                 />
                             </button>
                         </PopoverTrigger>
@@ -52,8 +56,6 @@ const Header = () => {
                             <div className="px-2 py-2">
                                 <Link
                                     href="/profile"
-                                    method="post"
-                                    as="button"
                                     className="flex items-center gap-2 hover:text-slate-500   px-5 py-2 rounded"
                                 >
                                     <span>Profile</span>

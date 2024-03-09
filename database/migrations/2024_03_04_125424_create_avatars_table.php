@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('url')->default('/storage/avatars/default.png');
+            $table->string('url')->default('"avatar/default.png"');
             $table->timestamps();
         });
     }

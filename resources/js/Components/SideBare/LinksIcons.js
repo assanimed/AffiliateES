@@ -20,7 +20,7 @@ const LEADS = {
     active: "/leads",
     label: "Leads",
     Icon: IoMagnetOutline,
-    href: "leads",
+    href: "/leads",
 };
 const USERS = {
     active: "/users",
@@ -32,7 +32,7 @@ const SETTINGS = {
     active: "/settings",
     label: "Settings",
     Icon: IoSettingsOutline,
-    href: "settings",
+    href: "/settings",
 };
 
 export const admin = [HOME, OFFERS, LEADS, USERS, SETTINGS];

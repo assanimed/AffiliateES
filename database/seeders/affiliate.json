@@ -1,5 +1,18 @@
 [
     {
+        "name": "hamza ",
+        "role": "admin",
+        "username": "@hamza.com",
+        "password": "AQWzsx12345",
+        "profile": {
+            "email": "kanet_loren@gmail.com",
+            "phone_number": "+78945646",
+            "address": "sme where 56878945",
+            "country": "USA",
+            "city": "New York"
+        }
+    },
+    {
         "name": "ahmed",
         "role": "affiliate",
         "username": "kanet_loren@gmail.com",

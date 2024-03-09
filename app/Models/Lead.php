@@ -10,10 +10,10 @@ class Lead extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code','status','shipped_at','user_id'];
+    protected $fillable = ['code','status','shipped_at', 'affiliate_id','user_id'];
 
 
-    public function user(): BelongsTo {
-        return $this->BelongsTo(User::class);
+    public function affiliate(): BelongsTo {
+        return $this->BelongsTo(Affiliate::class);
     }
 }

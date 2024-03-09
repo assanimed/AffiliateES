@@ -14,7 +14,7 @@ const Users = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Settings" />
+            <Head title="Manage Users" />
 
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">

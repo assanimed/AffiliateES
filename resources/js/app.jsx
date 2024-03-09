@@ -1,9 +1,14 @@
 import "./bootstrap";
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
+
 import "../css/app.css";
 
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+
+import { createTheme, MantineProvider } from "@mantine/core";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
@@ -11,6 +16,10 @@ import { NextUIProvider } from "@nextui-org/react";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
+
+const theme = createTheme({
+    /** Put your mantine theme override here */
+});
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -25,7 +34,9 @@ createInertiaApp({
         root.render(
             <Provider store={store}>
                 <NextUIProvider>
-                    <App {...props} />
+                    <MantineProvider theme={theme}>
+                        <App {...props} />
+                    </MantineProvider>
                 </NextUIProvider>
             </Provider>
         );

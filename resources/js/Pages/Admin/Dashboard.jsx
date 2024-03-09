@@ -10,7 +10,7 @@ const Dashboard = () => {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Dashboard" />
+            <Head title="Home Dashboard" />
 
             <TopPage />
         </AuthenticatedLayout>

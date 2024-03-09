@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->enum('status', ['shipped', 'pending'])->default('pending');
             $table->dateTime('shipped_at')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('affiliate_id')->constrained('affiliates');
             $table->timestamps();
         });
     }

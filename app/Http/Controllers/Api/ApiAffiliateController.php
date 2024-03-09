@@ -11,15 +11,17 @@ class ApiAffiliateController extends Controller
 {
     public function getAll(Request $req){
 
+
         $status = null;
-    $limit = (int) $req->get('limit') ? (int) $req->get('limit') : 1;
+    $limit = (int) $req->get('limit') ? (int) $req->get('limit') : 5;
     $page = $req->get('page') ? (int) $req->get('page') : 1;
     $search = null;
-    $sortBy = 'created_at';
+    $sortBy = $req->get('sortBy') ?  $req->get('sortBy') : 'created_at';
     $sortType = 'desc';
 
     if ($req->has('status')) {
         $status = $req->get('status');
+        if($status == "all" || $status === "All" ) $status = null;
     }
     if ($req->has('search')) {
         $search = $req->get('search');
@@ -33,8 +35,11 @@ class ApiAffiliateController extends Controller
         $sortType = "asc";
     }
 
+
     $query = User::where('role', 'affiliate')
-                 ->with('affiliate');
+                 ->with(['affiliate', 'profile']);
+
+
 
     if ($status !== null) {
         $query->whereHas('affiliate', function ($affiliateQuery) use ($status) {
@@ -53,15 +58,17 @@ class ApiAffiliateController extends Controller
     }
 
 
-    if (in_array($sortBy, ['name', 'created_at', 'status'])) {
-        if ($sortBy === 'status') {
-            $query->orderBy(function ($joinQuery) {
-               $joinQuery->select('status')
+    if (in_array($sortBy, ['name', 'created_at', 'status', 'earning'])) {
+        if ($sortBy === 'earning' || $sortBy === 'status')  {
+            $query->orderBy(function ($joinQuery) use($sortBy) {
+               $joinQuery->select($sortBy)
                          ->from('affiliates')
                          ->whereColumn('affiliates.user_id', 'users.id')
                          ->limit(1);
             }, $sortType);
-        } else {
+        }
+
+        else {
             $query->orderBy($sortBy, $sortType);
         }
     }

@@ -76,14 +76,15 @@ class User extends Authenticatable
         return $this->hasOne(Avatar::class);
        }
 
-       public function coupon(): hasOne{
-        return $this->hasOne(Coupon::class);
+
+       public function links(): HasOne{
+        return $this->HasOne(Link::class);
        }
 
 
-       public function leads(): HasMany{
-        return $this->hasMany(Lead::class);
-       }
+
+
+
 
        public function payouts(): HasMany{
         return $this->hasMany(Payout::class);
@@ -91,5 +92,9 @@ class User extends Authenticatable
 
        public function hasRole(string $role){
         return $this->role === $role;
+       }
+
+       public function  getTotalLeads(){
+        return $this->leads()->count();
        }
 }
