@@ -196,14 +196,26 @@ class OfferController extends Controller
 
         $zip = new ZipArchive();
         $zipFileName = $str.'.zip';
+
+        $directory =public_path('zippedOffers');
+
+        if (!file_exists($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+
+
+        $zipFilePath = public_path('zippedOffers/' . $zipFileName);
         //dd($zipFileName);
+
+
 
 
         $files = [];
         foreach($offer -> assets as $asset){
             $files[] = $asset->path;
         }
-        if ($zip->open(public_path($zipFileName), ZipArchive::CREATE) === TRUE) {
+        if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
             // Add files to the zip (change paths accordingly)
 
             foreach ($files as $file) {
@@ -212,6 +224,8 @@ class OfferController extends Controller
 
             $zip->close();
         }
+
+        dd("DOOON");
 
         return response()->download(public_path($zipFileName));
     }
