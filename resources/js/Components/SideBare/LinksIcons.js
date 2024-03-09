@@ -3,6 +3,7 @@ import { CiSettings } from "react-icons/ci";
 import { IoMagnetOutline } from "react-icons/io5";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { IoSettingsOutline } from "react-icons/io5";
+import { MdOutlinePayments } from "react-icons/md";
 
 const HOME = {
     active: "/dashboard",
@@ -28,6 +29,14 @@ const USERS = {
     Icon: HiOutlineUsers,
     href: "/users",
 };
+
+const PAYOUTS = {
+    active: "/payouts",
+    label: "Payouts",
+    Icon: MdOutlinePayments,
+    href: "/payouts",
+};
+
 const SETTINGS = {
     active: "/settings",
     label: "Settings",
@@ -35,5 +44,5 @@ const SETTINGS = {
     href: "/settings",
 };
 
-export const admin = [HOME, OFFERS, LEADS, USERS, SETTINGS];
-export const affiliate = [HOME, OFFERS, LEADS, SETTINGS];
+export const admin = [HOME, OFFERS, LEADS, USERS, PAYOUTS, SETTINGS];
+export const affiliate = [HOME, OFFERS, LEADS, PAYOUTS, SETTINGS];

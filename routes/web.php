@@ -4,6 +4,7 @@ use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PayoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
@@ -112,16 +113,6 @@ Route::middleware(['auth', 'approved'])->prefix('offers')->group(function () {
 
     Route::get('/{offer}/download', [OfferController::class, "zip"])->middleware(['auth', 'approved'])->name('assets.zip');
 
-
-
-
-
-
-
-    // Route::post('/users/{user}/edit', [UserController::class, 'store'])->name('user.edit');
-    /*
-    Route::get('/user/profile', function () {
-    }); */
 });
 
 Route::middleware(['auth', 'approved'])->prefix('leads')->group(function () {
@@ -147,6 +138,15 @@ Route::middleware(['auth', 'approved'])->prefix('leads')->group(function () {
     /*
     Route::get('/user/profile', function () {
     }); */
+});
+
+
+Route::middleware(['auth', 'approved'])->prefix('payouts')->group(function () {
+
+    Route::get('/', [PayoutController::class, "index"])->middleware(['auth', 'approved'])->name('payouts');
+    Route::get('/request', [PayoutController::class, "request"])->middleware(['auth', 'approved'])->name('payouts.request');
+    Route::get('/{payout}/fulfill', [PayoutController::class, "fulfill"])->middleware(['auth', 'approved', 'admin'])->name('payouts.request');
+
 });
 
 

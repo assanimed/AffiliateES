@@ -4,25 +4,22 @@ import { usePage, Head, Link } from "@inertiajs/react";
 import TopPage from "@/Components/TopPage";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 import { BiHomeAlt } from "react-icons/bi";
-import { HiOutlineUsers } from "react-icons/hi2";
-import { FaUser } from "react-icons/fa";
-import OffersList from "@/Components/Offers/OffersList";
-import { IoMagnetOutline } from "react-icons/io5";
-import LeadsList from "@/Components/Leads/LeadsList";
-import UserLeadsList from "@/Components/Leads/UserLeadsList";
+import { MdOutlinePayments } from "react-icons/md";
+import UserPayouts from "@/Components/Payout/UserPayouts";
+import PayoutForm from "@/Components/Payout/PayoutForm";
 
-const Leads = () => {
+const Payouts = () => {
     const {
         props: { auth },
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Offers" />
+            <Head title="Manage Payments" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Leads</h1>
+                    <h1 className="text-3xl font-bold">Payments</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -41,8 +38,10 @@ const Leads = () => {
                             >
                                 <Link href="/">Home</Link>
                             </BreadcrumbItem>
-                            <BreadcrumbItem startContent={<IoMagnetOutline />}>
-                                Leads
+                            <BreadcrumbItem
+                                startContent={<MdOutlinePayments />}
+                            >
+                                Payments
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
@@ -50,11 +49,11 @@ const Leads = () => {
             </TopPage>
             <div className="bg-white p-2 mt-5 rounded-md">
                 <div>
-                    <UserLeadsList />
+                    <PayoutForm />
                 </div>
             </div>
         </AuthenticatedLayout>
     );
 };
 
-export default Leads;
+export default Payouts;

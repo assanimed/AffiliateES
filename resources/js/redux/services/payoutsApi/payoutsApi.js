@@ -1,11 +1,11 @@
 import { setError, setProgress } from "@/redux/features/upload/uploadSlice";
 import affiliateApi from "../affiliateApi";
 
-const leadApi = affiliateApi.injectEndpoints({
+const payoutsApi = affiliateApi.injectEndpoints({
     endpoints: (builder) => ({
-        getLeads: builder.query({
-            query: ({ page, search, limit }) => ({
-                url: `/leads?limit=${limit}&page=${page}&search=${search}`,
+        getPayoutRequests: builder.query({
+            query: ({ page, limit }) => ({
+                url: `/payouts/requests?limit=${limit}&page=${page}`,
                 method: "GET",
                 headers: {
                     "content-type": "application/json",
@@ -13,7 +13,20 @@ const leadApi = affiliateApi.injectEndpoints({
                     Accept: "application/json",
                 },
             }),
-            providesTags: ["leads"],
+            providesTags: ["payouts"],
+        }),
+
+        getPayoutsHistory: builder.query({
+            query: ({ page, limit }) => ({
+                url: `/payouts?limit=${limit}&page=${page}`,
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("name")}`,
+                    Accept: "application/json",
+                },
+            }),
+            providesTags: ["payouts"],
         }),
 
         getLead: builder.query({
@@ -29,9 +42,9 @@ const leadApi = affiliateApi.injectEndpoints({
             providesTags: ["leads"],
         }),
 
-        getUserLeads: builder.query({
-            query: ({ affiliate_id, page, limit }) => ({
-                url: `/${affiliate_id}/leads?page=${page}&limit=${limit}`,
+        getUserPayouts: builder.query({
+            query: ({ user_id, page, limit }) => ({
+                url: `/${user_id}/payouts?page=${page}&limit=${limit}`,
                 method: "GET",
                 headers: {
                     "content-type": "application/json",
@@ -39,23 +52,23 @@ const leadApi = affiliateApi.injectEndpoints({
                     Accept: "application/json",
                 },
             }),
-            providesTags: ["leads"],
+            providesTags: ["payouts"],
         }),
-        createLead: builder.mutation({
-            query: (data) => ({
-                url: "/leads",
+        requestPayout: builder.mutation({
+            query: ({ user_id, amount }) => ({
+                url: `/${user_id}/payouts`,
                 method: "POST",
-                body: data,
+                body: { amount },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("name")}`,
                     Accept: "application/json",
                 },
             }),
-            invalidateTags: ["leads"],
+            invalidateTags: ["payouts"],
         }),
-        updateLead: builder.mutation({
+        updatePayout: builder.mutation({
             query: (data) => ({
-                url: `/leads/${data?.id}`,
+                url: `/payouts/${data?.id}`,
                 method: "PATCH",
                 body: data,
                 headers: {
@@ -66,11 +79,13 @@ const leadApi = affiliateApi.injectEndpoints({
             invalidateTags: ["leads"],
         }),
     }),
+    keepUnusedDataFor: 60 * 2,
 });
 
 export const {
-    useGetLeadsQuery,
-    useCreateLeadMutation,
-    useUpdateLeadMutation,
-    useGetUserLeadsQuery,
-} = leadApi;
+    useRequestPayoutMutation,
+    useGetUserPayoutsQuery,
+    useGetPayoutRequestsQuery,
+    useGetPayoutsHistoryQuery,
+    useUpdatePayoutMutation,
+} = payoutsApi;

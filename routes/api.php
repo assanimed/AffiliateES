@@ -9,6 +9,7 @@ use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PayoutController;
 use App\Http\Controllers\SettingsController;
 
 /*
@@ -41,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::post('/users/{user}/avatar', [AvatarController::class, 'store']);
 
+    // Get User Leads
+    Route::get('/{affiliate}/leads', [LeadController::class, 'getUseLeads']);
+
 
 
     Route::post('/assets', [AssetsController::class, 'store'])
@@ -61,4 +65,14 @@ Route::middleware('auth:sanctum')->group(function(){
 
         Route::get('/offers', [OfferController::class, 'getAll']);
 
+
+
+    /// Payouts Endpoints
+    // Route::get('/{user}/payouts/', [PayoutController::class, 'userPayouts']);
+    Route::post('/{user}/payouts', [PayoutController::class, 'requestPayout']);
+    Route::get('/{user}/payouts', [PayoutController::class, 'getUserPayouts']);
+
+    Route::get('/payouts', [PayoutController::class, 'allPayouts'])->middleware(['admin']);
+    Route::get('/payouts/requests', [PayoutController::class, 'allPayoutsRequests'])->middleware(['admin']);
+    Route::patch('/payouts/{payout}', [PayoutController::class, 'updatePayout'])->middleware(['admin']);
 });

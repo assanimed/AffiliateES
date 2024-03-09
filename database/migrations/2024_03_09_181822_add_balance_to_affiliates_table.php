@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payouts', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->double('amount');
-            $table->enum('status', ['request', 'paid']);
-            $table->foreignId('user_id')->constrained('users');
-            $table->timestamps();
+        Schema::table('affiliates', function (Blueprint $table) {
+            $table->decimal("balance", 10, 2)->default(0);
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payouts');
+        Schema::table('affiliates', function (Blueprint $table) {
+            //
+        });
     }
 };

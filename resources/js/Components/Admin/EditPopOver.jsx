@@ -3,7 +3,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import React from "react";
 import { CiEdit } from "react-icons/ci";
 
-const EditPopOver = ({ children, link }) => {
+const EditPopOver = ({ children, link, label, Icon }) => {
     return (
         <div>
             <Popover placement="bottom" offset={8} showArrow>
@@ -16,8 +16,8 @@ const EditPopOver = ({ children, link }) => {
                             href={link}
                             className="flex items-center gap-2 hover:text-slate-500  px-5 py-2 rounded"
                         >
-                            <CiEdit />
-                            <span>Edit</span>
+                            {Icon ? Icon : <CiEdit />}
+                            <span>{label ? label : "Edit"}</span>
                         </Link>
                     </div>
                 </PopoverContent>

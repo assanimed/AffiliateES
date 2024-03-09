@@ -20,7 +20,9 @@ class LeadController extends Controller
             if(Auth()->user()->isAdmin()){
                 return Inertia::render('Admin/Leads');
             }
-            return Inertia::render('Affiliate/Leads');
+            return Inertia::render('Affiliate/Leads', [
+                'affiliate' => Auth()->user()->affiliate
+            ]);
 
 
     }
@@ -166,6 +168,7 @@ class LeadController extends Controller
 
         if($lead->status == "shipped"){
             $user->affiliate->earning = (int) $user->affiliate->earning + (int) $commission;
+            $user->affiliate->balance = (int) $user->affiliate->earning + (int) $commission;
             $user->affiliate->save();
         }
 
@@ -205,6 +208,7 @@ class LeadController extends Controller
 
         if($lead->status == "shipped" && $prevStatus === "pending"){
             $affiliate->earning = (int) $affiliate->earning + (int) $commission;
+            $affiliate->balance = (int) $affiliate->earning + (int) $commission;
             $affiliate->save();
         }
 
@@ -215,5 +219,15 @@ class LeadController extends Controller
 
 
 
+    }
+
+    public function getUseLeads(Request $request, Affiliate $affiliate) {
+
+
+        $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 10;
+        $page = $request->get('page') ? (int) $request->get('page') : 1;
+
+        $leads = Lead::where('affiliate_id', $affiliate->id)->orderBy('created_at')->paginate($limit, ['*'], 'page', $page);
+        return $leads;
     }
 }
