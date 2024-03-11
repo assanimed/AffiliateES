@@ -18,6 +18,7 @@ export default function Register() {
         name: "",
         username: "",
         password: "",
+        email: "",
         password_confirmation: "",
         privacy_policy: false,
     });
@@ -86,12 +87,35 @@ export default function Register() {
                                 Icon={
                                     <MdOutlineMailOutline className="text-2xl text-gray-500" />
                                 }
-                                label="Username or email"
+                                label="Username"
                                 value={data.username}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
                                 onChange={(e) =>
                                     setData("username", e.target.value)
+                                }
+                                required
+                            />
+
+                            <InputError
+                                message={errors.email}
+                                className="mt-2"
+                            />
+                        </div>
+                        <div className="mt-4">
+                            <TextInput
+                                id="email"
+                                type="email"
+                                name="email"
+                                Icon={
+                                    <MdOutlineMailOutline className="text-2xl text-gray-500" />
+                                }
+                                label="E-mail"
+                                value={data.email}
+                                className="mt-1 block w-full"
+                                autoComplete="email"
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
                                 }
                                 required
                             />

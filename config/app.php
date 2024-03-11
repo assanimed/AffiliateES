@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'favicon' => env('FAVICON', '/favicon.png'),
 
     /*
     |--------------------------------------------------------------------------

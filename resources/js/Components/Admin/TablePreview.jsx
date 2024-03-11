@@ -22,7 +22,11 @@ import {
 import { BsThreeDotsVertical } from "react-icons/bs";
 import EditPopOver from "./EditPopOver";
 import SortIcon from "./SortIcon";
-import { setSortBy, setSortType } from "@/redux/features/paginate/filterSlice";
+import {
+    setSearchKey,
+    setSortBy,
+    setSortType,
+} from "@/redux/features/paginate/filterSlice";
 
 const columns = [
     { name: "USER", uid: "name" },
@@ -72,7 +76,7 @@ const TablePreview = ({ users }) => {
     const SortTable = (by) => {
         dispatch(setSortBy(by));
         if (!sortType || sortType === "" || by !== sortBy) {
-            dispatch(setSortType("asc"));
+            dispatch(setSortType("desc"));
         } else {
             dispatch(setSortType(sortType === "asc" ? "desc" : "asc"));
         }
@@ -135,17 +139,6 @@ const TablePreview = ({ users }) => {
             default:
                 return cellValue;
         }
-    }, []);
-
-    useEffect(() => {
-        return () => {
-            return () => {
-                dispatch(setCurrentPage(1));
-                dispatch(setSearchKey(""));
-                dispatch(setSortType(""));
-                dispatch(setPageLimit(5));
-            };
-        };
     }, []);
 
     return (

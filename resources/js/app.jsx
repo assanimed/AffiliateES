@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
+import "@mantine/charts/styles.css";
 
 import "../css/app.css";
 

@@ -1,16 +1,17 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ApiAffiliateController;
-use App\Http\Controllers\Api\ApiUserController;
 use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PayoutController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,18 +30,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/affiliates', [ApiAffiliateController::class, 'getAll'])
         ->middleware(['admin']);
 
 
-        Route::post('/settings', [SettingsController::class, 'store'])
+    Route::post('/settings', [SettingsController::class, 'store'])
         ->middleware(['admin']);
 
 
+    Route::get('/leads/stats', [StatsController::class, 'index']);
 
-    Route::post('/users/{user}/avatar', [AvatarController::class, 'store']);
+    Route::patch('/users', [UserController::class, 'updateUser']);
+    Route::post('/avatar', [AvatarController::class, 'store']);
+    Route::delete('/avatar', [AvatarController::class, 'destroy']);
 
     // Get User Leads
     Route::get('/{affiliate}/leads', [LeadController::class, 'getUseLeads']);
@@ -51,7 +55,7 @@ Route::middleware('auth:sanctum')->group(function(){
         ->middleware(['admin']);
 
 
-        Route::delete('/assets/{asset}', [AssetsController::class, 'destroy'])
+    Route::delete('/assets/{asset}', [AssetsController::class, 'destroy'])
         ->middleware(['admin']);
 
     // GET ALL LEAD
@@ -60,12 +64,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/leads', [LeadController::class, 'addLead'])->middleware(['admin']);
     Route::get('/leads/{lead}', [LeadController::class, 'getLead'])->middleware(['admin']);
     Route::patch('/leads/{lead}', [LeadController::class, 'updateLead'])->middleware(['admin']);
-        // ->middleware(['admin']);
-        // GET ALL OFFER
+    // ->middleware(['admin']);
+    // GET ALL OFFER
 
-        Route::get('/offers', [OfferController::class, 'getAll']);
+    Route::get('/offers', [OfferController::class, 'getAll']);
 
-
+    Route::delete('/logo', [SettingsController::class, 'deleteLogo'])->middleware(['admin']);
 
     /// Payouts Endpoints
     // Route::get('/{user}/payouts/', [PayoutController::class, 'userPayouts']);

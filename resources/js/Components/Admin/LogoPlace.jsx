@@ -1,5 +1,6 @@
-import { Image } from "@nextui-org/react";
-import React from "react";
+import { useDeleteLogoMutation } from "@/redux/services/settingsApi/settingsApi";
+import { Image, Spinner } from "@nextui-org/react";
+import React, { useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 
 const LogoPlace = ({ image, setData, file }) => {
@@ -18,6 +19,9 @@ const LogoPlace = ({ image, setData, file }) => {
         // dispatch(setFile());
     };
 
+    const [deleteLogo, { data, isLoading, isSuccess, isError }] =
+        useDeleteLogoMutation();
+
     const handleClick = () => {
         const file = document.createElement("input");
         file.type = "file";
@@ -26,6 +30,18 @@ const LogoPlace = ({ image, setData, file }) => {
 
         file.click();
     };
+
+    const handleDelete = () => {
+        deleteLogo();
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            setData("logoFile", null);
+            setData("logoImage", null);
+        }
+    }, [isSuccess]);
+
     return (
         <div className="flex flex-col gap-2">
             {image || file ? (
@@ -41,7 +57,6 @@ const LogoPlace = ({ image, setData, file }) => {
                     as="button"
                     onClick={handleClick}
                     className=" w-40 aspect-square border-2 border-dashed flex  justify-center items-center"
-                    as="button"
                 >
                     <FaPlus />
                 </button>
@@ -55,6 +70,19 @@ const LogoPlace = ({ image, setData, file }) => {
             >
                 Change
             </button>
+            {image ? (
+                <button
+                    type="button"
+                    as="button"
+                    disabled={isLoading}
+                    onClick={handleDelete}
+                    className="px-5 py-2 bg-red-500 text-white max-w-40 rounded"
+                >
+                    {isLoading ? "Deleting..." : "Delete"}
+                </button>
+            ) : (
+                ""
+            )}
         </div>
     );
 };

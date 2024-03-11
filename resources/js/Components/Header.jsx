@@ -1,7 +1,10 @@
 import React from "react";
-import { CiSearch } from "react-icons/ci";
 import { BiSolidUserBadge } from "react-icons/bi";
 import { Avatar } from "@nextui-org/react";
+import { RxHamburgerMenu } from "react-icons/rx";
+
+import { useDispatch } from "react-redux";
+
 import {
     Popover,
     PopoverTrigger,
@@ -10,8 +13,12 @@ import {
 } from "@nextui-org/react";
 import { Link, usePage } from "@inertiajs/react";
 import { HiLogout } from "react-icons/hi";
+import { setIsOpen } from "../redux/features/drawer/drawerSlice";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 const Header = () => {
+    const dispatch = useDispatch();
+
     const {
         props: { auth },
     } = usePage();
@@ -22,9 +29,19 @@ const Header = () => {
         ? auth?.user?.avatar?.url
         : "/avatar/default.png";
 
+    const handleOpenDrawer = () => {
+        dispatch(setIsOpen(true));
+    };
+
     return (
         <div className="py-6 px-5  w-full">
             <div className="flex justify-between w-full">
+                <div className=" md:hidden">
+                    <button onClick={handleOpenDrawer}>
+                        <RxHamburgerMenu className="text-2xl text-white" />
+                    </button>
+                </div>
+
                 {/* <div className="flex bg-white items-center gap-2 shadow-md py-1 px-3 rounded">
                     <div>
                         <CiSearch className="text-2xl font-bold" />
@@ -54,12 +71,27 @@ const Header = () => {
                         </PopoverTrigger>
                         <PopoverContent className="rounded-md">
                             <div className="px-2 py-2">
+                                {auth?.user?.role === "admin" ? (
+                                    <>
+                                        <Link
+                                            href="/profile"
+                                            className="flex items-center gap-2 hover:text-slate-500   px-5 py-2 rounded"
+                                        >
+                                            <span>Profile</span>
+                                            <BiSolidUserBadge />
+                                        </Link>
+                                        <hr />
+                                    </>
+                                ) : (
+                                    ""
+                                )}
+
                                 <Link
-                                    href="/profile"
-                                    className="flex items-center gap-2 hover:text-slate-500   px-5 py-2 rounded"
+                                    href="/security"
+                                    className="flex items-center gap-2 hover:text-slate-500  px-5 py-2 rounded"
                                 >
-                                    <span>Profile</span>
-                                    <BiSolidUserBadge />
+                                    <span>Security</span>
+                                    <RiLockPasswordFill />
                                 </Link>
                                 <hr />
                                 <Link

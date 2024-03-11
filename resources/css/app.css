@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@font-face {
+    font-family: "gotham";
+    src: url("../fonts/Gotham-Thin.otf") format('opentype');
+    font-weight: 100;
+  }
+
+  @font-face {
+    font-family: "gotham";
+    src: url("../fonts/Gotham-XLight.otf") format('opentype');
+    font-weight: 200;
+  }
+
+  @font-face {
+    font-family: "gotham";
+    src: url("../fonts/Gotham-Light.otf") format('opentype');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'gotham';
+    src: url("../fonts/Gotham-Medium.otf") format('opentype');
+    font-weight: 500;
+  }
+
+
+  @font-face {
+    font-family: 'gotham';
+    src: url("../fonts/Gotham-Bold.otf") format('opentype');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: "gotham";
+    src: url("../fonts/Gotham-Ultra.otf") format('opentype');
+    font-weight: 800;
+  }
+
+  @font-face {
+    font-family: "gotham";
+    src: url("../fonts/Gotham-Black.otf") format('opentype');
+    font-weight: 900;
+  }
+
+
+
+
+  *, *::brefore, *::after{
+    font-family: 'gotham', 'Arial Narrow', Arial, sans-serif;
+  }

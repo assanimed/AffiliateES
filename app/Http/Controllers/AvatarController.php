@@ -15,18 +15,17 @@ class AvatarController extends Controller
     public function index(User $user)
     {
 
-        if(!$user->avatar){
+        if (!$user->avatar) {
             $contents = Storage::get("avatar/default.png");
 
             return response($contents, 200)
-                    ->header('Content-Type', 'image/png');
+                ->header('Content-Type', 'image/png');
         }
 
-        $contents = Storage::get("avatar/".$user->id.".jpg");
+        $contents = Storage::get("avatar/" . $user->id . ".jpg");
 
-            return response($contents, 200)
-                    ->header('Content-Type', 'image/png');
-
+        return response($contents, 200)
+            ->header('Content-Type', 'image/png');
     }
 
     /**
@@ -42,7 +41,9 @@ class AvatarController extends Controller
     public function store(Request $request)
     {
 
-        // return  "mrow";
+        // return response()->json(['error' => "Avatar has beend eleted Successfully"], 403);
+
+
 
         $request->validate([
             'avatar' => ['file', 'required']
@@ -51,12 +52,12 @@ class AvatarController extends Controller
         $user = $request->user();
 
 
-        $path = Storage::putFileAs('avatar', $request->avatar, $user->id.".jpg");
+        $path = Storage::putFileAs('avatar', $request->avatar, $user->id . ".jpg");
 
-        $user->avatar()->create(["url" => "/users/".$user->id."/avatar"]);
+        $user->avatar()->create(["url" => "/users/" . $user->id . "/avatar"]);
 
 
-        return response()->json(['message' => "Avatar has been added", "url" => "/users/".$user->id."/avatar"]);
+        return response()->json(['message' => "Avatar has been added", "url" => "/users/" . $user->id . "/avatar"]);
     }
 
     /**
@@ -86,8 +87,21 @@ class AvatarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Avatar $avatar)
+    public function destroy(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $filePath = 'avatar/' . $user->id . '.jpg';
+
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+
+
+        $user->avatar()->delete();
+
+
+
+        return response()->json(['message' => "Avatar has beend eleted Successfully"]);
     }
 }

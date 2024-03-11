@@ -15,7 +15,19 @@ const settingsApi = affiliateApi.injectEndpoints({
             }),
             providesTags: ["settings"],
         }),
+
+        deleteLogo: builder.mutation({
+            query: () => ({
+                url: "/logo",
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("name")}`,
+                    Accept: "application/json",
+                },
+            }),
+            providesTags: ["settings"],
+        }),
     }),
 });
 
-export const { useUpdateSettingsMutation } = settingsApi;
+export const { useUpdateSettingsMutation, useDeleteLogoMutation } = settingsApi;

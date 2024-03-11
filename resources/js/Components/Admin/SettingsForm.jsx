@@ -12,6 +12,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
         ),
         logoText: dataSettings?.find((el) => el.key === "logoText")?.value,
         logoImage: imageVal ? imageVal : null,
+        telegram: dataSettings?.find((el) => el.key === "telegram")?.value,
         logoFile: null,
     });
 
@@ -37,6 +38,10 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
             formData.append("logoFile", data?.logoFile);
         }
 
+        if (data?.telegram) {
+            formData.append("telegram", data?.telegram);
+        }
+
         updateSetting(formData);
     };
 
@@ -52,16 +57,20 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
     return (
         <div>
             <form onSubmit={handleSubmit} className="w-full bg-white px-5 py-3">
-                {isError && showInfo && (
+                {isError && showInfo ? (
                     <div className="bg-red-500 text-white px-2 py-1 rounded">
                         Failed to Update Setting Please Try Later
                     </div>
+                ) : (
+                    ""
                 )}
 
-                {isSuccess && showInfo && (
+                {isSuccess && showInfo ? (
                     <div className="bg-indigo-500 text-white px-2 py-1 rounded">
                         Settings Updated Successfully
                     </div>
+                ) : (
+                    ""
                 )}
                 <div className="px-5 flex  items-center justify-between py-2  font-bold">
                     <h3 className="text-xl"></h3>
@@ -89,6 +98,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             setData={setData}
                         />
                     </div>
+                    <hr />
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -127,6 +137,29 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                                 setData("commission", e.target.value)
                             }
                             placeholder="Full Name"
+                        />
+                    </div>
+                </div>
+                <hr />
+
+                <h2 className="text-xl my-2">Telegram Support Link</h2>
+                <div className="flex gap-4 md:gap-10">
+                    <div className="mb-4 flex-1 max-w-56">
+                        <label
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                            for="telegram"
+                        >
+                            telegram link
+                        </label>
+                        <input
+                            className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="name"
+                            type="text"
+                            value={data?.telegram}
+                            onChange={(e) =>
+                                setData("telegram", e.target.value)
+                            }
+                            placeholder="telegram URL"
                         />
                     </div>
                 </div>

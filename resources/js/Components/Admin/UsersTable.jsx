@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useGetAffiliatesQuery } from "@/redux/services/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import TablePreview from "./TablePreview";
-import { setTotalPages } from "@/redux/features/paginate/paginateSlice";
+import {
+    setTotalPages,
+    setPageLimit,
+    setCurrentPage,
+} from "@/redux/features/paginate/paginateSlice";
+import {
+    setSearchKey,
+    setSortBy,
+    setSortType,
+} from "@/redux/features/paginate/filterSlice";
+
 import { Spinner } from "@nextui-org/react";
 
 export default function UsersTable() {
@@ -35,6 +45,15 @@ export default function UsersTable() {
         dispatch(setTotalPages(data?.last_page));
     }
 
+    useEffect(() => {
+        return () => {
+            dispatch(setCurrentPage(1));
+            dispatch(setSearchKey(""));
+            dispatch(setSortType(""));
+            dispatch(setPageLimit(5));
+        };
+    }, []);
+
     return (
         <>
             {isLoading && (
@@ -45,7 +64,13 @@ export default function UsersTable() {
                     <Spinner size="lg" />{" "}
                 </div>
             )}
-            {isSuccess && data?.data && <TablePreview users={data?.data} />}
+            {isSuccess && data?.data?.length ? (
+                <TablePreview users={data?.data} />
+            ) : (
+                <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
+                    No Users Yet
+                </h1>
+            )}
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
                     Lailed to Load Users

@@ -9,7 +9,6 @@ const UserPayouts = () => {
         props: { affiliate },
     } = usePage();
 
-    console.log("ffiliate", affiliate);
     return (
         <div>
             <div className="max-w-[300px] shadow-md rounded p-2 m-2">

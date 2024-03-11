@@ -10,7 +10,7 @@ const Settings = ({ settingsData }) => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Offers" />
+            <Head title="Site Settings" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>

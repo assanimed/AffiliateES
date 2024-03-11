@@ -55,6 +55,7 @@ const HistoryPayoutsTable = ({ data }) => {
         id: payout?.id,
         amount: payout?.amount,
         status: payout?.status,
+        user: payout?.user,
         created_at: new Date(payout?.created_at).toLocaleDateString() ?? "-",
     }));
 
@@ -70,10 +71,12 @@ const HistoryPayoutsTable = ({ data }) => {
             case "user":
                 return (
                     <User
-                        name="Junior Garcia"
-                        description={" @jrgarciadev"}
+                        name={payout?.user?.name}
+                        description={payout?.user?.username}
                         avatarProps={{
-                            src: payout?.user?.avatar ?? "/avatar/default.png",
+                            src:
+                                payout?.user?.avatar?.url ??
+                                "/avatar/default.png",
                         }}
                     />
                 );

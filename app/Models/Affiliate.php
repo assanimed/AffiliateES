@@ -15,16 +15,13 @@ class Affiliate extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'status', 'earning'];
-
-    public function user(): belongsTo {
+    public function user(): belongsTo
+    {
         return $this->BelongsTo(User::class);
     }
 
-       public function leads(): HasMany{
+    public function leads(): HasMany
+    {
         return $this->hasMany(Lead::class);
-       }
-
-       public function links(): HasMany{
-        return $this->hasMany(SocialLink::class);
-       }
+    }
 }

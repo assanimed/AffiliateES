@@ -50,20 +50,26 @@ const PayoutsUserHistory = ({ user }) => {
                 </div>
             )}
 
-            {!data?.data?.length && isSuccess && (
+            {!data?.data?.length && isSuccess ? (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Leads To show
+                    No Payments To show
                 </h1>
+            ) : (
+                ""
             )}
 
-            {isSuccess && data?.data?.length && (
+            {isSuccess && data?.data?.length ? (
                 <PayoutsUserTable data={data?.data} />
+            ) : (
+                ""
             )}
 
-            {isError && (
+            {isError ? (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
                     Lailed to Load Leads
                 </h1>
+            ) : (
+                ""
             )}
         </div>
     );

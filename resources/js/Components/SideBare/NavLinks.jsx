@@ -13,7 +13,7 @@ const NavLinks = () => {
     const linksLabel = userType === "admin" ? admin : affiliate;
 
     return (
-        <ul className="mt-10 mr-5">
+        <ul className="mt-5 mr-5">
             {linksLabel.map((link) => (
                 <li key={link?.label}>
                     <Suspense

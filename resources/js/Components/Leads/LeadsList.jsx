@@ -42,7 +42,13 @@ const LeadsList = () => {
                     <Spinner size="lg" />{" "}
                 </div>
             )}
-            {isSuccess && <LeadsTable data={data?.data} />}
+            {isSuccess && data?.data?.length ? (
+                <LeadsTable data={data?.data} />
+            ) : (
+                <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
+                    No Leads Yet
+                </h1>
+            )}
 
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">

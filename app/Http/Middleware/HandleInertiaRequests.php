@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,11 +38,15 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'flash' => function () use ($request) {
+            'info' => function () use ($request) {
+
+                $telegram = Settings::where('key', "telegram")->first();
+                $logoText = Settings::where('key', "logoText")->first();
+                $logoImage = Settings::where('key', "logoImage")->first();
                 return [
-                    'message' => $request->session()->get('message'),
-                    'success' => $request->session()->get('success'),
-                    'error' => $request->session()->get('error')
+                    'telegram' => $telegram ? $telegram->value : "#" ,
+                    "logoImage" => $logoImage ? $logoImage->value : null,
+                    "logoText" => $logoText ? $logoText->value : env('APP_NAME', 'AffiliateES'),
                 ];
             },
         ];

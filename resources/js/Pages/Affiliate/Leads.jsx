@@ -17,7 +17,7 @@ const Leads = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Offers" />
+            <Head title="Manage Leads" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>

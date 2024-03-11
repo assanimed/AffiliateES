@@ -5,10 +5,10 @@ const SortIcon = ({ active }) => {
     return (
         <button>
             <IoIosArrowUp
-                className={`${active === "asc" ? "text-black" : ""} `}
+                className={`${active === "desc" ? "text-black" : ""} `}
             />
             <IoIosArrowDown
-                className={`${active === "desc" ? "text-black" : ""} `}
+                className={`${active === "asc" ? "text-black" : ""} `}
             />
         </button>
     );

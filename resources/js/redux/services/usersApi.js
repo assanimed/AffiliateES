@@ -13,16 +13,49 @@ const userApi = affiliateApi.injectEndpoints({
                 },
             }),
             providesTags: ["Users"],
+            keepUnusedDataFor: 60,
         }),
 
-        /* sendPasswordResetLink: builder.mutation({
+        UpdateUser: builder.mutation({
             query: (body) => ({
-                url: "",
-                method: "POST",
-                body,
+                url: `/users`,
+                method: "PATCH",
+                body: body,
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("name")}`,
+                    Accept: "application/json",
+                },
             }),
-        }), */
+        }),
+        updateAvatar: builder.mutation({
+            query: (body) => ({
+                url: `/avatar`,
+                method: "POST",
+                body: body,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("name")}`,
+                    Accept: "application/json",
+                },
+            }),
+        }),
+        deleteAvatar: builder.mutation({
+            query: (body) => ({
+                url: `/avatar`,
+                method: "DELETE",
+                headers: {
+                    "content-type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("name")}`,
+                    Accept: "application/json",
+                },
+            }),
+        }),
     }),
 });
 
-export const { useGetAffiliatesQuery } = userApi;
+export const {
+    useGetAffiliatesQuery,
+    useUpdateUserMutation,
+    useUpdateAvatarMutation,
+    useDeleteAvatarMutation,
+} = userApi;

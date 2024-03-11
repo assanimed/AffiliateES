@@ -7,6 +7,8 @@ import paginateSlice from "./features/paginate/paginateSlice";
 import filterSlice from "./features/paginate/filterSlice";
 import uploadSlice from "./features/upload/uploadSlice";
 import offerSlice from "./features/offer/offerSlice";
+import drawerSlice from "./features/drawer/drawerSlice";
+import chartSlice from "./features/chart/chartSlice";
 
 export default configureStore({
     reducer: {
@@ -16,6 +18,8 @@ export default configureStore({
         filter: filterSlice,
         upload: uploadSlice,
         offer: offerSlice,
+        drawer: drawerSlice,
+        chart: chartSlice,
     },
     devTools: process.env.NODE_ENV !== "production",
     middleware: (defaultMiddleware) =>

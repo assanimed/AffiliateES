@@ -25,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'email',
         'password',
         'role',
     ];
@@ -49,52 +50,56 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected $with = ['avatar', 'token'];
+    protected $with = ['avatar', 'token', 'profile'];
 
-    public function isAffiliate(){
+    public function isAffiliate()
+    {
         return $this->role == "affiliate";
     }
 
-    public function isAdmin(){
+    public function isAdmin()
+    {
         return $this->role == "admin";
     }
 
 
-    public function affiliate(): hasOne{
+    public function affiliate(): hasOne
+    {
         return $this->hasOne(Affiliate::class);
-       }
+    }
 
-    public function profile(): hasOne{
+    public function profile(): hasOne
+    {
         return $this->hasOne(Profile::class);
-       }
+    }
 
-       public function token(): hasOne{
+    public function token(): hasOne
+    {
         return $this->hasOne(ApiToken::class);
-       }
+    }
 
-       public function avatar(): hasOne{
+    public function avatar(): hasOne
+    {
         return $this->hasOne(Avatar::class);
-       }
+    }
 
 
-       public function links(): HasOne{
+    public function links(): HasOne
+    {
         return $this->HasOne(Link::class);
-       }
-
-
-
-
-
-
-       public function payouts(): HasMany{
+    }
+    public function payouts(): HasMany
+    {
         return $this->hasMany(Payout::class);
-       }
+    }
 
-       public function hasRole(string $role){
+    public function hasRole(string $role)
+    {
         return $this->role === $role;
-       }
+    }
 
-       public function  getTotalLeads(){
+    public function  getTotalLeads()
+    {
         return $this->leads()->count();
-       }
+    }
 }

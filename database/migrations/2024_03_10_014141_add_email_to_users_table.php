@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('social_links', function (Blueprint $table) {
-            $table->id();
-            $table->enum('key', ['facebook', 'instagram', 'snapchat', 'tiktok', 'others']);
-            $table->string('value');
-            $table->unique(['key', 'value']);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email')->unique()->nullable();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('social_links');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

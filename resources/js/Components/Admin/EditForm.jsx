@@ -15,13 +15,13 @@ const EditForm = ({ user }) => {
     const Statuses = ["approved", "pending", "banned"];
     const roles = ["affiliate", "admin"];
 
-    const [countries, setCounttries] = useState([]);
+    const [countries, setCountries] = useState([]);
     const [showNot, setShowNot] = useState(false);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: user?.name,
         username: user?.username,
-        email: user?.profile?.email,
+        email: user?.email,
         phone_number: user?.profile?.phone_number,
         status: user?.affiliate?.status,
         coupon: user?.affiliate?.coupon,
@@ -55,7 +55,15 @@ const EditForm = ({ user }) => {
     };
 
     const handleStatusChange = (e) => setData("status", e.target.value);
+    const handleRoleChange = (e) => setData("role", e.target.value);
     const handleCountryChange = (e) => setData("country", e.target.value);
+
+    useEffect(() => {
+        console.log("countriesData", countriesData);
+        if (isSuccess) {
+            setCountries(countriesData);
+        }
+    }, [isSuccess, countriesData]);
 
     return (
         <div>
@@ -392,7 +400,7 @@ const EditForm = ({ user }) => {
                                 name="role"
                                 placeholder="Change Status"
                                 className="relative overflow-visible rounded-xs bg-background/0 "
-                                onChange={handleStatusChange}
+                                onChange={handleRoleChange}
                                 defaultSelectedKeys={[data?.role]}
                                 id="roles"
                             >

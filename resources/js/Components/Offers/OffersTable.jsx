@@ -61,7 +61,13 @@ export default function OffersTable() {
                     <Spinner size="lg" />{" "}
                 </div>
             )}
-            {isSuccess && data?.data && <OfferTableList data={data?.data} />}
+            {isSuccess && data?.data?.length ? (
+                <OfferTableList data={data?.data} />
+            ) : (
+                <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
+                    No Offers Yet
+                </h1>
+            )}
             {totalPages > 1 && (
                 <div className="flex justify-end px-14 py-2">
                     <Pagination
