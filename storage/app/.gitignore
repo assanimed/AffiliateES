@@ -1,7 +1,5 @@
 *
 !public/
 !assets/
-!assets/videos
-!assets/images
 !avatar/
 !.gitignore
