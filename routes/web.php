@@ -132,7 +132,7 @@ Route::middleware(['auth', 'approved'])->prefix('payouts')->group(function () {
 
     Route::get('/', [PayoutController::class, "index"])->middleware(['auth', 'approved'])->name('payouts');
     Route::get('/request', [PayoutController::class, "request"])->middleware(['auth', 'approved'])->name('payouts.request');
-    Route::get('/{payout}/fulfill', [PayoutController::class, "fulfill"])->middleware(['auth', 'approved', 'admin'])->name('payouts.request');
+    Route::get('/{payout}/fulfill', [PayoutController::class, "fulfill"])->middleware(['auth', 'approved', 'admin'])->name('payouts.fulfill');
 });
 
 
