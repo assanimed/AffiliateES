@@ -46,7 +46,7 @@ class AvatarController extends Controller
 
 
         $request->validate([
-            'avatar' => ['file', 'required']
+            'avatar' => ['file', 'required', 'image', 'mimes:jpeg,bmp,png,webp']
         ]);
 
         $user = $request->user();

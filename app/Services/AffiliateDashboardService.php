@@ -9,38 +9,44 @@ use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 
-class AffiliateDashboardService{
+class AffiliateDashboardService
+{
 
     public User $user;
-    public function __construct(){
+    public function __construct()
+    {
     }
 
-    public function currentMonthUsers() {
+    public function currentMonthUsers()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return User::where('role', 'affiliate')
-                   ->whereBetween('created_at', [$start_date, $end_date])
-                   ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
     }
 
-    public function lastMonthUsers(){
+    public function lastMonthUsers()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return User::where('role', 'affiliate')->whereBetween('created_at', [$start_date, $end_date])->count();
+        return User::where('role', 'affiliate')->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
 
-    public function totalLeads() {
+    public function totalLeads()
+    {
         return Lead::where('affiliate_id', $this->user->affiliate->id)->count();
     }
-    public function currentMonthLeads() {
+    public function currentMonthLeads()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
@@ -49,46 +55,51 @@ class AffiliateDashboardService{
         return Lead::where('affiliate_id', $this->user->affiliate->id)->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
-    public function lastMonthLeads(){
+    public function lastMonthLeads()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return Lead::where('affiliate_id', $this->user->affiliate->id)->whereBetween('created_at', [$start_date, $end_date])->count();
+        return Lead::where('affiliate_id', $this->user->affiliate->id)->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
 
 
-    public function totalNotShipped() {
+    public function totalNotShipped()
+    {
         return Lead::where('status', 'pending')->where('affiliate_id', $this->user->affiliate->id)->count();
     }
-    public function currentMonthNotShipped() {
+    public function currentMonthNotShipped()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'pending')
-                   ->whereBetween('created_at', [$start_date, $end_date])
-                   ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
     }
 
 
-    public function lastMonthNotShipped(){
+    public function lastMonthNotShipped()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'pending')->whereBetween('created_at', [$start_date, $end_date])->count();
+        return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'pending')->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
-    public function totalEarning() {
+    public function totalEarning()
+    {
         $earning = 0;
-        if($this->user->affiliate){
+        if ($this->user->affiliate) {
             $earning = $this->user->affiliate->earning;
         }
 
@@ -96,11 +107,12 @@ class AffiliateDashboardService{
     }
 
 
-    public function currentMonthEarning() {
+    public function currentMonthEarning()
+    {
         $commission = Settings::where('key', 'commission')->first();
 
-        if($commission){
-            $commission = (double) $commission['value'];
+        if ($commission) {
+            $commission = (float) $commission['value'];
         } else {
             $commission  = 0;
         }
@@ -110,31 +122,35 @@ class AffiliateDashboardService{
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'shipped')
-                     ->whereBetween('created_at', [$start_date, $end_date])
-                     ->count() * $commission ;
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count() * $commission;
     }
 
 
-    public function lastMonthEarning(){
+    public function lastMonthEarning()
+    {
 
         $commission = Settings::where('key', 'commission')->first();
 
-        if($commission){
-            $commission = (double) $commission['value'];
+        if ($commission) {
+            $commission = (float) $commission['value'];
         } else {
             $commission  = 0;
         }
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            // return [$start_date, $end_date];
-            return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'shipped')->whereBetween('created_at', [$start_date, $end_date])->count() * $commission;
+        // return [$start_date, $end_date];
+        return Lead::where('affiliate_id', $this->user->affiliate->id)->where('status', 'shipped')->whereBetween('created_at', [$start_date, $end_date])->count() * $commission;
     }
 
-    public function getPerformance(){
+    public function getPerformance()
+    {
+
+        if ($this->totalLeads() === 0) return 0;
 
         $shipped = $this->totalLeads() - $this->totalNotShipped();
 
@@ -143,7 +159,8 @@ class AffiliateDashboardService{
     }
 
 
-    public function currentMonthPerformance(){
+    public function currentMonthPerformance()
+    {
 
 
         $now = Carbon::now();
@@ -152,8 +169,11 @@ class AffiliateDashboardService{
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         $totaCurrentMonth =  Lead::where('affiliate_id', $this->user->affiliate->id)
-        ->whereBetween('created_at', [$start_date, $end_date])
-        ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
+
+
+        if ($totaCurrentMonth === 0) return 0;
 
         $shipped = $totaCurrentMonth - $this->currentMonthNotShipped();
 
@@ -161,7 +181,8 @@ class AffiliateDashboardService{
         return $performance;
     }
 
-    public function lastMonthPerformance(){
+    public function lastMonthPerformance()
+    {
 
         $now = Carbon::now();
         $lastMonth = $now->subMonth();
@@ -170,8 +191,10 @@ class AffiliateDashboardService{
         $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
         $totaLastMonth =  Lead::where('affiliate_id', $this->user->affiliate->id)
-        ->whereBetween('created_at', [$start_date, $end_date])
-        ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
+
+        if ($totaLastMonth === 0) return 0;
 
         $shipped = $totaLastMonth - $this->lastMonthNotShipped();
 
