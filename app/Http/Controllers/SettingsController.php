@@ -56,6 +56,10 @@ class SettingsController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'logoFile' => ['file', 'required', 'image', 'mimes:jpeg,bmp,png,webp']
+        ]);
+
         // dd($request->logoFile);
         //
         // $this->validate($request, ['comission' => "numeric"]);

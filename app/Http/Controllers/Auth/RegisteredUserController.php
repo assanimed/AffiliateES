@@ -39,8 +39,8 @@ class RegisteredUserController extends Controller
         //return dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|lowercase|max:255|min:5|unique:'.User::class,
-            'email' => 'required|string|lowercase|max:255|min:5|unique:'.User::class,
+            'username' => 'required|string|lowercase|max:255|min:5|unique:' . User::class,
+            'email' => 'required|email|string|lowercase|max:255|min:5|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'privacy_policy' => ['required', new TrueValue]
         ]);
@@ -57,10 +57,11 @@ class RegisteredUserController extends Controller
 
 
         Affiliate::create(
-                [
+            [
                 'user_id' => $user->id,
                 'status' => 'pending'
-                ]);
+            ]
+        );
 
         //event(new Registered($user));
 
