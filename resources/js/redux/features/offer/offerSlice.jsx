@@ -6,9 +6,13 @@ const offerSlice = createSlice({
         title: "",
         description: "",
         assets: [],
+        tobeDeleted: null,
     },
 
     reducers: {
+        setToBeDeleted: (state, action) => {
+            state.tobeDeleted = action.payload;
+        },
         setTitle: (state, action) => {
             state.title = action.payload;
         },
@@ -28,6 +32,11 @@ const offerSlice = createSlice({
     },
 });
 
-export const { setTitle, setDescription, addAsset, removeAsset } =
-    offerSlice.actions;
+export const {
+    setTitle,
+    setDescription,
+    addAsset,
+    removeAsset,
+    setToBeDeleted,
+} = offerSlice.actions;
 export default offerSlice.reducer;

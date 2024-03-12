@@ -3,7 +3,7 @@ import React from "react";
 import { Image, Spinner } from "@nextui-org/react";
 import { MdDelete } from "react-icons/md";
 
-const AssetPreview = ({ asset, handleDelete, deleting }) => {
+const AssetPreview = ({ asset, handleDelete, deleting, tobeDeleted }) => {
     const type = asset?.type;
     return (
         <div className="relative">
@@ -17,14 +17,14 @@ const AssetPreview = ({ asset, handleDelete, deleting }) => {
             ) : (
                 <>
                     <div>
-                        <video controls clasName="w-36 min-w36">
+                        <video controls className="w-36 rounded-xl  min-w-36">
                             <source src={`/${asset?.path}`} />
                         </video>
                     </div>
                 </>
             )}
             <>
-                {deleting ? (
+                {deleting && tobeDeleted === asset?.id ? (
                     <div className=" bg-white text-white  flex text-2xl items-center p-1 border border-slate-300 rounded-full absolute top-0 left-0 z-10 ">
                         <Spinner size="sm" className="" />
                     </div>

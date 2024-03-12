@@ -8,10 +8,16 @@ import {
     useDeleteAssetMutation,
     useUploadAssetMutation,
 } from "@/redux/services/assetsApi/assetsApi";
-import { addAsset, removeAsset } from "@/redux/features/offer/offerSlice";
+import {
+    addAsset,
+    removeAsset,
+    setToBeDeleted,
+} from "@/redux/features/offer/offerSlice";
 
 const Assets = ({ assets }) => {
-    const { assets: assetsData } = useSelector((state) => state.offer);
+    const { assets: assetsData, tobeDeleted } = useSelector(
+        (state) => state.offer
+    );
 
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
@@ -40,6 +46,8 @@ const Assets = ({ assets }) => {
 
     const handleDelete = async (id) => {
         // alert(`Delete ${id}`);
+
+        dispatch(setToBeDeleted(id));
 
         await deleteAsset({ id });
     };
@@ -84,19 +92,21 @@ const Assets = ({ assets }) => {
         if (delAsset?.isSuccess) {
             dispatch(setData(null));
             dispatch(removeAsset(parseInt(delAsset?.data?.asset?.id)));
+            dispatch(setToBeDeleted(null));
         }
     }, [delAsset?.isSuccess]);
 
     return (
         <>
             <div className="py-3 px-1.5 border-2 border-slate-300 justify-stretch rounded flex flex-col gap-4">
-                <div className="grid grid-cols-3 gap-5">
+                <div className="flex gap-3 flex-wrap justify-center">
                     {assetsData?.map((asset) => (
                         <AssetPreview
                             key={asset?.key}
                             asset={asset}
                             handleDelete={handleDelete}
                             deleting={delAsset?.isLoading}
+                            tobeDeleted={tobeDeleted}
                         />
                     ))}
                 </div>
