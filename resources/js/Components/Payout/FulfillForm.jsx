@@ -69,15 +69,16 @@ const FulfillForm = () => {
                             }
                             avatarProps={{
                                 src:
-                                    payout?.user?.avatar ??
+                                    payout?.user?.avatar?.url ??
                                     "/avatar/default.png",
                             }}
                         />
                     </div>
                     <div>
-                        User Balance:{" "}
+                        User Total Balance:{" "}
                         <span className="text-xl font-bold text-slate-800">
-                            $ {payout?.user?.affiliate?.balance}
+                            ${" "}
+                            {payout?.user?.affiliate?.balance + payout?.amount}
                         </span>
                     </div>
                 </div>

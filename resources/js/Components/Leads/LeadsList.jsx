@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LeadHead from "./LeadHead";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetLeadsQuery } from "@/redux/services/leadApi/leadApi";
 import LeadsTable from "./LeadsTable";
-import { setTotalPages } from "@/redux/features/paginate/paginateSlice";
+import {
+    setTotalPages,
+    setPageLimit,
+    setCurrentPage,
+} from "@/redux/features/paginate/paginateSlice";
+import {
+    setSearchKey,
+    setSortBy,
+    setSortType,
+} from "@/redux/features/paginate/filterSlice";
 import { Spinner } from "@nextui-org/react";
 
 const LeadsList = () => {
@@ -30,6 +39,15 @@ const LeadsList = () => {
     if (isSuccess) {
         dispatch(setTotalPages(data?.last_page));
     }
+
+    useEffect(() => {
+        return () => {
+            dispatch(setCurrentPage(1));
+            dispatch(setSearchKey(""));
+            dispatch(setSortType(""));
+            dispatch(setPageLimit(5));
+        };
+    }, []);
 
     return (
         <div>
