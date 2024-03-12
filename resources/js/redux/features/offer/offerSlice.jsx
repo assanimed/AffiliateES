@@ -19,6 +19,9 @@ const offerSlice = createSlice({
         setDescription: (state, action) => {
             state.description = action.payload;
         },
+        clearAssets: (state) => {
+            state.assets = [];
+        },
         addAsset: (state, action) => {
             // console.log("payload", action.payload);
 
@@ -38,5 +41,6 @@ export const {
     addAsset,
     removeAsset,
     setToBeDeleted,
+    clearAssets,
 } = offerSlice.actions;
 export default offerSlice.reducer;

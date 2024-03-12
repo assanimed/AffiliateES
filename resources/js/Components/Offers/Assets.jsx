@@ -10,6 +10,7 @@ import {
 } from "@/redux/services/assetsApi/assetsApi";
 import {
     addAsset,
+    clearAssets,
     removeAsset,
     setToBeDeleted,
 } from "@/redux/features/offer/offerSlice";
@@ -95,6 +96,14 @@ const Assets = ({ assets }) => {
             dispatch(setToBeDeleted(null));
         }
     }, [delAsset?.isSuccess]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(setData(null));
+            dispatch(setToBeDeleted(null));
+            dispatch(clearAssets());
+        };
+    }, []);
 
     return (
         <>
