@@ -19,6 +19,7 @@ class SettingsController extends Controller
         $settings = Settings::where('key', "logoText")
             ->orWhere('key', "logoImage")
             ->orWhere('key', "telegram")
+            ->orWhere('key', "minPayout")
             ->orWhere('key', "commission")->get();
 
 
@@ -57,7 +58,7 @@ class SettingsController extends Controller
     {
 
         $request->validate([
-            'logoFile' => ['file', 'required', 'image', 'mimes:jpeg,bmp,png,webp']
+            'logoFile' => ['file', 'image', 'mimes:jpeg,bmp,png,webp']
         ]);
 
         // dd($request->logoFile);
@@ -68,6 +69,15 @@ class SettingsController extends Controller
         $logoText = $request->logoText;
         $commission  = (int) $request->commission;
         $telegram  = $request->telegram;
+        $minPayout  = $request->minPayout;
+
+        // return $request->all();
+
+        if ($minPayout <= 0) {
+            return response()->json(["errors" => [
+                'minPayout' => "value must greator than 0"
+            ]], 403);
+        }
 
 
 
@@ -100,6 +110,10 @@ class SettingsController extends Controller
 
         if ($telegram) {
             $sett[] = ['key' => 'telegram', "value" => $telegram];
+        }
+
+        if ($minPayout) {
+            $sett[] = ['key' => 'minPayout', "value" => $minPayout];
         }
 
         foreach ($sett as $item) {

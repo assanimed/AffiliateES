@@ -7,18 +7,20 @@ import { Spinner } from "@nextui-org/react";
 const SettingsForm = ({ settingsData: dataSettings }) => {
     const imageVal = dataSettings?.find((el) => el.key === "logoImage")?.value;
     const { data, setData } = useForm({
-        commission: parseInt(
-            dataSettings?.find((el) => el.key === "commission")?.value
+        commission: parseFloat(
+            dataSettings?.find((el) => el.key === "commission")?.value ?? 0
         ),
         logoText: dataSettings?.find((el) => el.key === "logoText")?.value,
         logoImage: imageVal ? imageVal : null,
         telegram: dataSettings?.find((el) => el.key === "telegram")?.value,
         logoFile: null,
+        minPayout:
+            dataSettings?.find((el) => el.key === "minPayout")?.value ?? 0,
     });
 
     const [
         updateSetting,
-        { data: settingsData, isLoading, isError, isSuccess },
+        { data: settingsData, isLoading, isError, isSuccess, error },
     ] = useUpdateSettingsMutation();
 
     const handleSubmit = (e) => {
@@ -40,6 +42,9 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
 
         if (data?.telegram) {
             formData.append("telegram", data?.telegram);
+        }
+        if (data?.minPayout) {
+            formData.append("minPayout", data?.minPayout);
         }
 
         updateSetting(formData);
@@ -84,7 +89,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                     </button>
                 </div>
                 <h2 className="text-xl my-2">Logo</h2>
-                <div className="flex flex-col md:flex-row gap-4 md:gap-10">
+                <div className="flex flex-col">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -98,8 +103,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             setData={setData}
                         />
                     </div>
-                    <hr />
-                    <div className="mb-4 flex-1">
+                    <div className="mb-4 flex-1 max-w-[300px]">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="logoText"
@@ -119,25 +123,48 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                     </div>
                 </div>
                 <hr />
-                <h2 className="text-xl my-2">Commission</h2>
-                <div className="flex gap-4 md:gap-10">
+                <h2 className="text-xl my-2">Commission & min Payout</h2>
+                <div className="flex gap-4 max-w-[600px] justify-between mt-5 flex-col sm:flex-row">
                     <div className="mb-4 flex-1 max-w-56">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            for="username"
+                            for="commission"
                         >
                             Commission value
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="name"
-                            type="text"
+                            id="commission"
+                            type="number"
                             value={data?.commission}
                             onChange={(e) =>
                                 setData("commission", e.target.value)
                             }
                             placeholder="Full Name"
                         />
+                    </div>
+                    <div className="mb-4 flex-1 max-w-56">
+                        <label
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                            for="minPayout"
+                        >
+                            Minimum Payout
+                        </label>
+                        <input
+                            className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="minPayout"
+                            type="number"
+                            value={data?.minPayout}
+                            onChange={(e) =>
+                                setData("minPayout", e.target.value)
+                            }
+                            placeholder="Minimum Payout"
+                        />
+                        {isError && "minPayout" in error?.data?.errors ? (
+                            <span className="text-xs text-red-500"></span>
+                        ) : (
+                            ""
+                        )}
                     </div>
                 </div>
                 <hr />

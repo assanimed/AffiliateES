@@ -39,7 +39,6 @@ const UserLeadsList = () => {
     );
 
     if (isSuccess) {
-        console.log("GET ", data?.data);
         dispatch(setTotalPages(data?.last_page));
     }
 
@@ -54,13 +53,17 @@ const UserLeadsList = () => {
                 </div>
             )}
 
-            {!data?.data?.length && isSuccess && (
+            {!data?.data?.length && isSuccess ? (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
                     No Leads To show
                 </h1>
+            ) : (
+                ""
             )}
-            {isSuccess && data?.data?.length && (
+            {isSuccess && data?.data?.length ? (
                 <UserLeadsTable data={data?.data} />
+            ) : (
+                ""
             )}
 
             {isError && (

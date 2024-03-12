@@ -41,7 +41,13 @@ const Payouts = () => {
                             <BreadcrumbItem
                                 startContent={<MdOutlinePayments />}
                             >
-                                Payments
+                                <Link href="/payouts">Payouts</Link>
+                            </BreadcrumbItem>
+
+                            <BreadcrumbItem
+                                startContent={<MdOutlinePayments />}
+                            >
+                                Request
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>

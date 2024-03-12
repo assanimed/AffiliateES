@@ -22,7 +22,11 @@ import {
     setPageLimit,
 } from "@/redux/features/paginate/paginateSlice";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { setSortBy, setSortType } from "@/redux/features/paginate/filterSlice";
+import {
+    setSearchKey,
+    setSortBy,
+    setSortType,
+} from "@/redux/features/paginate/filterSlice";
 import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
@@ -108,12 +112,10 @@ const UserLeadsTable = ({ data }) => {
 
     useEffect(() => {
         return () => {
-            return () => {
-                dispatch(setCurrentPage(1));
-                dispatch(setSearchKey(""));
-                dispatch(setSortType(""));
-                dispatch(setPageLimit(5));
-            };
+            dispatch(setCurrentPage(1));
+            dispatch(setSearchKey(""));
+            dispatch(setSortType(""));
+            dispatch(setPageLimit(5));
         };
     }, []);
 
@@ -143,7 +145,6 @@ const UserLeadsTable = ({ data }) => {
                 <Table
                     aria-label="Example table with custom cells"
                     shadow="none"
-                    className="max-w-[800px] mx-auto"
                 >
                     <TableHeader columns={columns}>
                         {(column) => (

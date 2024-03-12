@@ -78,9 +78,6 @@ const DashboardGrid = () => {
 
     const setIcon = (item) => {
         const diff = calDiff(item);
-
-        console.log(diff);
-
         return item?.key === "payouts"
             ? switchIcon("dollar")
             : diff > 0

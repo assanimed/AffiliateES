@@ -13,12 +13,12 @@ const Payouts = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Payments" />
+            <Head title="Manage Payouts" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Payments</h1>
+                    <h1 className="text-3xl font-bold">Payouts</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -40,7 +40,7 @@ const Payouts = () => {
                             <BreadcrumbItem
                                 startContent={<MdOutlinePayments />}
                             >
-                                Payments
+                                Payouts
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>

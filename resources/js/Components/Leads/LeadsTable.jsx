@@ -90,7 +90,9 @@ const LeadsTable = ({ data }) => {
                     <User
                         avatarProps={{
                             radius: "lg",
-                            src: lead?.affiliate?.user?.avatar,
+                            src:
+                                lead?.affiliate?.user?.avatar?.url ??
+                                "/avatar/default.png",
                         }}
                         description={lead.username}
                         name={cellValue}

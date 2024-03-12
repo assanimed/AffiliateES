@@ -18,17 +18,24 @@ const UserDashboardGrid = () => {
             auth: {
                 user: { affiliate },
             },
-            data: { earning, leads, notShipped, performance, balance },
+            data: {
+                earning,
+                leads,
+                notShipped,
+                performance,
+                balance,
+                minPayout,
+            },
         },
     } = usePage();
 
     const calDiff = (item) => {
-        if (item?.key === "performance")
-            return item?.data?.currentMonth - item?.data?.lastMonth;
-
         if (item?.data?.lastMonth === item?.data?.currentMonth) return 0;
 
         if (item?.data?.lastMonth === 0) return 100;
+
+        if (item?.key === "performance")
+            return item?.data?.currentMonth - item?.data?.lastMonth;
 
         return (item?.data?.currentMonth * 100) / item?.data?.lastMonth - 100;
     };
@@ -115,7 +122,11 @@ const UserDashboardGrid = () => {
                 <GridItem
                     key={item?.key}
                     text={item?.text}
-                    value={item?.data?.total}
+                    value={
+                        item?.key === "performance"
+                            ? `${parseInt(item?.data?.total)} %`
+                            : item?.data?.total
+                    }
                     Icon={setIcon(item)}
                     diff={calDiff(item)}
                 />
@@ -129,7 +140,7 @@ const UserDashboardGrid = () => {
             >
                 <Chart />
             </Suspense>
-            <PayoutBoard balance={balance} />
+            <PayoutBoard minPayout={minPayout} balance={balance} />
             <CouponBoard coupon={affiliate?.coupon} />
         </div>
     );

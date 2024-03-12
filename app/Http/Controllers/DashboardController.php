@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use App\Models\Payout;
+use App\Models\Settings;
 use App\Models\User;
 use App\Services\AdminDashboardService;
 use App\Services\AffiliateDashboardService;
@@ -61,7 +62,8 @@ class DashboardController extends Controller
 
         $data['balance'] = (float) Auth::user()->affiliate->balance;
 
-
+        $minPayout = Settings::where('key', "minPayout")->first();
+        $data['minPayout'] = $minPayout ? (float) $minPayout->value : 0;
 
 
         return Inertia::render('Affiliate/Dashboard', [

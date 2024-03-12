@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const PayoutForm = () => {
     const {
-        props: { auth },
+        props: { auth, minPayout },
     } = usePage();
 
     const backLink = useRef();
@@ -61,9 +61,14 @@ const PayoutForm = () => {
                 </div>
 
                 <div className="mt-5 mb-2">
-                    Your Balance:{" "}
-                    <span className="text-xl font-bold text-slate-800">
-                        $ {auth?.user?.affiliate?.balance}
+                    <div>
+                        <span>Your Balance:</span>
+                        <span className="text-xl px-3 font-bold text-slate-800">
+                            $ {auth?.user?.affiliate?.balance}
+                        </span>
+                    </div>
+                    <span className="text-red-600 text-xs">
+                        Minimum Payout Amount {minPayout}$
                     </span>
                 </div>
 

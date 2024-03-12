@@ -17,14 +17,12 @@ class LeadController extends Controller
      */
     public function index()
     {
-            if(Auth()->user()->isAdmin()){
-                return Inertia::render('Admin/Leads');
-            }
-            return Inertia::render('Affiliate/Leads', [
-                'affiliate' => Auth()->user()->affiliate
-            ]);
-
-
+        if (Auth()->user()->isAdmin()) {
+            return Inertia::render('Admin/Leads');
+        }
+        return Inertia::render('Affiliate/Leads', [
+            'affiliate' => Auth()->user()->affiliate
+        ]);
     }
 
     /**
@@ -72,14 +70,14 @@ class LeadController extends Controller
         //
     }
 
-    public function getAll(Request $request){
+    public function getAll(Request $request)
+    {
 
         $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 2;
         $page = $request->get('page') ? (int) $request->get('page') : 1;
         $search = null;
 
-        if($request->user()->isAdmin())
-        {
+        if ($request->user()->isAdmin()) {
 
 
             if ($request->has('search')) {
@@ -91,47 +89,54 @@ class LeadController extends Controller
             if ($search !== null) {
                 $query->where(function ($searchQuery) use ($search) {
                     $searchQuery->whereHas('affiliate', function ($profileQuery) use ($search) {
-                                    $profileQuery->where('coupon', 'like', '%' . $search . '%');
-                                })
+                        $profileQuery->where('coupon', 'like', '%' . $search . '%');
+                    })
 
-                                ->orWhereHas('affiliate.user', function ($profileQuery) use ($search) {
-                                    $profileQuery->where('username', 'like', '%' . $search . '%');
-                                });;
+                        ->orWhereHas('affiliate.user', function ($profileQuery) use ($search) {
+                            $profileQuery->where('username', 'like', '%' . $search . '%');
+                        });;
                 });
             }
             //
             ///
-            return $query ->orderBy('created_at', "desc") ->paginate($limit, ['*'], 'page', $page);;
+            return $query->orderBy('created_at', "desc")->paginate($limit, ['*'], 'page', $page);;
         }
         $affiliate = $request->user()->affiliate;
         $leads = Lead::where('affiliate_id', $affiliate->id)->orderBy('created_at')->paginate($limit, ['*'], 'page', $page);
         return $leads;
-
     }
 
-    public function getLead(Request $request, Lead $lead){
+    public function getLead(Request $request, Lead $lead)
+    {
         return response()->json([
             'lead' => $lead
         ], 200);;
     }
 
-    public function addLead(Request $request ){
+    public function addLead(Request $request)
+    {
 
 
-        $username  = $request -> username;
-        $coupon = $request -> coupon;
+        $username  = $request->username;
+        $coupon = $request->coupon;
 
         $commission = Settings::where('key', 'commission')->first()->value;
 
+        if ($commission) {
+            $commission = (float) $commission;
+        } else {
+            $commission  = 0;
+        }
 
 
-        if(!$coupon && !$username ){
+
+        if (!$coupon && !$username) {
             return response()->json([
                 'error' => 'need username or coupon to identify the user'
             ], 403);
         }
 
-        if(!$request -> status || !in_array($request -> status, ['shipped', 'pending'])){
+        if (!$request->status || !in_array($request->status, ['shipped', 'pending'])) {
             return response()->json([
                 'error' => 'Lead Status is invalid'
             ], 403);
@@ -141,19 +146,19 @@ class LeadController extends Controller
         $user = null;
 
 
-        if($username){
+        if ($username) {
             $user = User::where('username', $username)->first();
         }
 
-        if(!$user){
+        if (!$user) {
             $affiliate = Affiliate::where('coupon', $coupon)->first();
 
-            if($affiliate){
+            if ($affiliate) {
                 $user = $affiliate->user;
             }
         }
 
-        if(!$user){
+        if (!$user) {
             return response()->json([
                 'error' => 'No User Found'
             ], 403);
@@ -161,14 +166,14 @@ class LeadController extends Controller
 
 
         $lead = Lead::create([
-            'status' => $request -> status,
+            'status' => $request->status,
             'affiliate_id' => $user->affiliate->id,
             'code' => Str::random(15)
         ]);
 
-        if($lead->status == "shipped"){
+        if ($lead->status == "shipped") {
             $user->affiliate->earning = (int) $user->affiliate->earning + (int) $commission;
-            $user->affiliate->balance = (int) $user->affiliate->earning + (int) $commission;
+            $user->affiliate->balance = (int) $user->affiliate->balance + (int) $commission;
             $user->affiliate->save();
         }
 
@@ -176,12 +181,10 @@ class LeadController extends Controller
             'success' => "Lead created Successfully",
             'lead' => $lead
         ], 201);
-
-
-
     }
 
-    public function updateLead(Request $request, Lead $lead ){
+    public function updateLead(Request $request, Lead $lead)
+    {
 
 
 
@@ -189,7 +192,13 @@ class LeadController extends Controller
 
         $commission = Settings::where('key', 'commission')->first()->value;
 
-        if(!$request -> status || !in_array($request -> status, ['shipped', 'pending'])){
+        if ($commission) {
+            $commission = (float) $commission;
+        } else {
+            $commission  = 0;
+        }
+
+        if (!$request->status || !in_array($request->status, ['shipped', 'pending'])) {
             return response()->json([
                 'error' => 'Lead Status is invalid'
             ], 403);
@@ -199,16 +208,16 @@ class LeadController extends Controller
 
 
         $lead->update([
-            'status' => $request -> status,
+            'status' => $request->status,
         ]);
 
         $lead->save();
 
         $affiliate = $lead->affiliate;
 
-        if($lead->status == "shipped" && $prevStatus === "pending"){
+        if ($lead->status == "shipped" && $prevStatus === "pending") {
             $affiliate->earning = (int) $affiliate->earning + (int) $commission;
-            $affiliate->balance = (int) $affiliate->earning + (int) $commission;
+            $affiliate->balance = (int) $affiliate->balance + (int) $commission;
             $affiliate->save();
         }
 
@@ -216,12 +225,10 @@ class LeadController extends Controller
             'success' => "Lead Updated Successfully",
             'lead' => $lead
         ], 201);
-
-
-
     }
 
-    public function getUseLeads(Request $request, Affiliate $affiliate) {
+    public function getUseLeads(Request $request, Affiliate $affiliate)
+    {
 
 
         $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 10;

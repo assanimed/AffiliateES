@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payout;
+use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,9 +16,14 @@ class PayoutController extends Controller
      */
     public function index()
     {
-        if(!Auth()->user()->isAdmin()){
+        if (!Auth()->user()->isAdmin()) {
+
+            $minPayout = Settings::where('key', "minPayout")->first();
+            $minPayout = $minPayout ? (float) $minPayout->value : 0;
+
             return Inertia::render('Affiliate/Payouts', [
                 "affiliate" => Auth()->user()->affiliate,
+                "minPayout" => $minPayout
             ]);
         }
         return Inertia::render('Admin/Payouts');
@@ -28,8 +34,19 @@ class PayoutController extends Controller
      */
     public function request()
     {
+
+
+        $minPayout = Settings::where('key', "minPayout")->first();
+        $minPayout = $minPayout ? (float) $minPayout->value : 0;
+
+
+        if ((float) Auth()->user()->affiliate->balance <= $minPayout) {
+
+            return redirect()->to('payouts');
+        }
         return Inertia::render('Affiliate/RequestPayout', [
             "affiliate" => Auth()->user()->affiliate,
+            "minPayout" => $minPayout
         ]);
     }
 
@@ -48,16 +65,18 @@ class PayoutController extends Controller
     public function updatePayout(Request $request, Payout $payout)
     {
 
-        $amount = (double) $request->amount;
+        $amount = (float) $request->amount;
 
-        if(!$amount){
+        if (!$amount) {
             return response()->json([
                 'error' => 'amount is Required',
             ], 403);
         }
 
 
-        if($amount != (double) $payout->amount){
+
+
+        if ($amount != (float) $payout->amount) {
             return response()->json([
                 'error' => 'Amout must Equat request amout to Fullfill Request',
             ], 403);
@@ -76,35 +95,46 @@ class PayoutController extends Controller
     public function requestPayout(Request $req, User $user)
     {
 
-        $balance  = (double) $user -> affiliate->balance;
-        $amount = (double) $req->amount;
+        $balance  = (float) $user->affiliate->balance;
+        $amount = (float) $req->amount;
+
+        $minPayout = Settings::where('key', "minPayout")->first();
+        $minPayout = $minPayout ? (float) $minPayout->value : 0;
 
 
-        if(!$amount){
+
+        if ($amount < $minPayout) {
+            return response()->json([
+                'error' => 'amount is must be greator than Minimum Payout',
+            ], 403);
+        }
+
+
+        if (!$amount) {
             return response()->json([
                 'error' => 'amount is Required',
             ], 403);
         }
 
-        if($amount > $balance){
+        if ($amount > $balance) {
             return response()->json([
                 'error' => 'Your Balance is Low',
             ], 403);
         }
 
 
-        if($balance >= $amount){
+        if ($balance >= $amount) {
 
             Payout::create([
-                "user_id" => $user ->id,
+                "user_id" => $user->id,
                 "code" => Str::random(10),
                 "amount" => $amount,
                 "status" => "request"
             ]);
 
-            $user -> affiliate->balance =  $balance -  $amount;
+            $user->affiliate->balance =  $balance -  $amount;
 
-            $user -> affiliate->save();
+            $user->affiliate->save();
 
             return response()->json([
                 'success' => "Request Submitted Successfully",
@@ -115,7 +145,8 @@ class PayoutController extends Controller
         return $user;
     }
 
-    public function getUserPayouts(Request $request, User $user){
+    public function getUserPayouts(Request $request, User $user)
+    {
         $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 10;
         $page = $request->get('page') ? (int) $request->get('page') : 1;
 
@@ -123,7 +154,8 @@ class PayoutController extends Controller
         return $payouts;
     }
 
-    public function allPayouts(Request $request){
+    public function allPayouts(Request $request)
+    {
 
         $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 10;
         $page = $request->get('page') ? (int) $request->get('page') : 1;
@@ -132,7 +164,8 @@ class PayoutController extends Controller
         return $payouts;
     }
 
-    public function allPayoutsRequests(Request $request){
+    public function allPayoutsRequests(Request $request)
+    {
 
         $limit = (int) $request->get('limit') ? (int) $request->get('limit') : 10;
         $page = $request->get('page') ? (int) $request->get('page') : 1;

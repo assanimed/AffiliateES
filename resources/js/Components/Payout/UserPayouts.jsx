@@ -6,7 +6,7 @@ import PayoutsUserHistory from "./PayoutsUserHistory";
 
 const UserPayouts = () => {
     const {
-        props: { affiliate },
+        props: { affiliate, minPayout },
     } = usePage();
 
     return (
@@ -16,7 +16,7 @@ const UserPayouts = () => {
                 <div className="text-3xl text-slate-500 my-5 font-bold">
                     $ {affiliate?.balance}
                 </div>
-                {parseFloat(affiliate?.balance) > 0 && (
+                {parseFloat(affiliate?.balance) >= minPayout ? (
                     <Link
                         href="/payouts/request"
                         className=" inline-flex items-center  gap-2 my-2 border-2 px-2 py-1.5 rounded text-indigo-500 border-blue-400"
@@ -24,6 +24,10 @@ const UserPayouts = () => {
                         <BiMoneyWithdraw />
                         Request Payout
                     </Link>
+                ) : (
+                    <span className="text-red-600 text-xs">
+                        Minimum Payout Amount {minPayout}$
+                    </span>
                 )}
             </div>
 
