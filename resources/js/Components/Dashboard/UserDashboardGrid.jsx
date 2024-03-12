@@ -26,9 +26,11 @@ const UserDashboardGrid = () => {
         if (item?.key === "performance")
             return item?.data?.currentMonth - item?.data?.lastMonth;
 
-        return item?.data?.lastMonth > 0
-            ? (item?.data?.currentMonth * 100) / item?.data?.lastMonth - 100
-            : 100;
+        if (item?.data?.lastMonth === item?.data?.currentMonth) return 0;
+
+        if (item?.data?.lastMonth === 0) return 100;
+
+        return (item?.data?.currentMonth * 100) / item?.data?.lastMonth - 100;
     };
 
     const switchIcon = (state) => {

@@ -20,22 +20,23 @@ class DashboardController extends Controller
     public function __construct(
         private AffiliateDashboardService $affiliateService,
         private AdminDashboardService $adminService,
-    ){
+    ) {
         // dd(Auth::user());
 
         // $this->affiliateService = new AffiliateDashboardService();
     }
 
-    public function index(){
+    public function index()
+    {
 
 
 
-        if(Auth()->user()->isAdmin()){
+        if (Auth()->user()->isAdmin()) {
             $data = [
-                "users" => ['total'=> User::where('role', 'affiliate')->count(), 'lastMonth' => $this->lastMonthUsers(), 'currentMonth' => $this->currentMonthUsers()],
-                "leads" => ['total'=> Lead::all()->count(), 'lastMonth' => $this->lastMonthLeads(), 'currentMonth' => $this->currentMonthLeads()],
-                "notShipped" => ['total'=> Lead::where('status', 'pending')->count(), 'lastMonth' => $this->lastMonthNotShipped(), 'currentMonth' => $this->currentMonthNotShipped()],
-                "payouts" => ['total'=> Payout::where('status', 'paid')->sum("amount"), 'lastMonth' => $this->lastMonthPayouts(), "currentMonth" => $this->currentMonthPayouts() ],
+                "users" => ['total' => User::where('role', 'affiliate')->count(), 'lastMonth' => $this->lastMonthUsers(), 'currentMonth' => $this->currentMonthUsers()],
+                "leads" => ['total' => Lead::all()->count(), 'lastMonth' => $this->lastMonthLeads(), 'currentMonth' => $this->currentMonthLeads()],
+                "notShipped" => ['total' => Lead::where('status', 'pending')->count(), 'lastMonth' => $this->lastMonthNotShipped(), 'currentMonth' => $this->currentMonthNotShipped()],
+                "payouts" => ['total' => Payout::where('status', 'paid')->sum("amount"), 'lastMonth' => $this->lastMonthPayouts(), "currentMonth" => $this->currentMonthPayouts()],
             ];
             return Inertia::render('Admin/Dashboard', ["data" => $data]);
         }
@@ -51,14 +52,16 @@ class DashboardController extends Controller
         $performance = $this->affiliateService->getPerformance();
 
         $data = [
-            "leads" => ['total'=> $this->affiliateService->totalLeads(), 'lastMonth' => $this->affiliateService->lastMonthLeads(), 'currentMonth' => $this->affiliateService->currentMonthLeads()],
-            "notShipped" => ['total'=> $this->affiliateService->totalNotShipped(), 'lastMonth' => $this->affiliateService->lastMonthNotShipped(), 'currentMonth' => $this->affiliateService->currentMonthNotShipped()],
-            "earning" => ['total'=> $this->affiliateService->totalEarning(), 'lastMonth' => $this->affiliateService->lastMonthEarning(), 'currentMonth' => $this->affiliateService->currentMonthEarning()],
-            "performance" => ['total'=> $this->affiliateService->getPerformance(), 'lastMonth' => $this->affiliateService->lastMonthPerformance(), 'currentMonth' => $this->affiliateService->currentMonthPerformance()],
+            "leads" => ['total' => $this->affiliateService->totalLeads(), 'lastMonth' => $this->affiliateService->lastMonthLeads(), 'currentMonth' => $this->affiliateService->currentMonthLeads()],
+            "notShipped" => ['total' => $this->affiliateService->totalNotShipped(), 'lastMonth' => $this->affiliateService->lastMonthNotShipped(), 'currentMonth' => $this->affiliateService->currentMonthNotShipped()],
+            "earning" => ['total' => $this->affiliateService->totalEarning(), 'lastMonth' => $this->affiliateService->lastMonthEarning(), 'currentMonth' => $this->affiliateService->currentMonthEarning()],
+            "performance" => ['total' => $this->affiliateService->getPerformance(), 'lastMonth' => $this->affiliateService->lastMonthPerformance(), 'currentMonth' => $this->affiliateService->currentMonthPerformance()],
 
         ];
 
-        $data['balance'] = (double) Auth::user()->affiliate->balance;
+        $data['balance'] = (float) Auth::user()->affiliate->balance;
+
+
 
 
         return Inertia::render('Affiliate/Dashboard', [
@@ -68,28 +71,31 @@ class DashboardController extends Controller
 
 
 
-    private function currentMonthUsers() {
+    private function currentMonthUsers()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return User::where('role', 'affiliate')
-                   ->whereBetween('created_at', [$start_date, $end_date])
-                   ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
     }
 
-    private function lastMonthUsers(){
+    private function lastMonthUsers()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return User::where('role', 'affiliate')->whereBetween('created_at', [$start_date, $end_date])->count();
+        return User::where('role', 'affiliate')->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
-    private function currentMonthLeads() {
+    private function currentMonthLeads()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
@@ -98,60 +104,63 @@ class DashboardController extends Controller
         return Lead::whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
-    private function lastMonthLeads(){
+    private function lastMonthLeads()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return Lead::whereBetween('created_at', [$start_date, $end_date])->count();
+        return Lead::whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
-    private function currentMonthNotShipped() {
+    private function currentMonthNotShipped()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return Lead::where('status', 'pending')
-                   ->whereBetween('created_at', [$start_date, $end_date])
-                   ->count();
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->count();
     }
 
 
-    private function lastMonthNotShipped(){
+    private function lastMonthNotShipped()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return Lead::where('status', 'pending')->whereBetween('created_at', [$start_date, $end_date])->count();
+        return Lead::where('status', 'pending')->whereBetween('created_at', [$start_date, $end_date])->count();
     }
 
 
-    private function currentMonthPayouts() {
+    private function currentMonthPayouts()
+    {
         $now = Carbon::now();
 
         $start_date = $now->startOfMonth()->toDateTimeString();
         $end_date = $now->endOfMonth()->toDateTimeString();
 
         return Payout::where('status', 'paid')
-                     ->whereBetween('created_at', [$start_date, $end_date])
-                     ->sum("amount");
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->sum("amount");
     }
 
 
-    private function lastMonthPayouts(){
+    private function lastMonthPayouts()
+    {
         $now = Carbon::now();
-            $lastMonth = $now->subMonth();
+        $lastMonth = $now->subMonth();
 
-            $start_date = $lastMonth->startOfMonth()->toDateTimeString();
-            $end_date = $lastMonth->endOfMonth()->toDateTimeString();
+        $start_date = $lastMonth->startOfMonth()->toDateTimeString();
+        $end_date = $lastMonth->endOfMonth()->toDateTimeString();
 
-            return Payout::where('status', 'paid')->whereBetween('created_at', [$start_date, $end_date])->sum("amount");
+        return Payout::where('status', 'paid')->whereBetween('created_at', [$start_date, $end_date])->sum("amount");
     }
-
-
 }

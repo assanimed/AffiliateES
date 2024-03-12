@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { CopyButton, ActionIcon, Tooltip, rem } from "@mantine/core";
 import { IoCopyOutline } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 
+import copy from "copy-text-to-clipboard";
+
 const CouponBoard = ({ coupon }) => {
-    const copyFun = useRef();
+    const [copied, setCopied] = useState(false);
 
     const handleCopyCLick = () => {
-        copyFun?.current();
+        setCopied(true);
+        copy(coupon);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
@@ -30,32 +34,21 @@ const CouponBoard = ({ coupon }) => {
                         onClick={handleCopyCLick}
                         className="flex items-center justify-center gap-1 bg-white text-indigo-500 px-3 py-1 rounded text-sm"
                     >
-                        <span>Copy Code</span>
-                        <CopyButton value={coupon} timeout={2000}>
-                            {({ copied, copy }) => {
-                                copyFun.current = copy;
-
-                                return (
-                                    <Tooltip
-                                        label={copied ? "Copied" : "Copy"}
-                                        withArrow
-                                        position="right"
-                                    >
-                                        <ActionIcon
-                                            color={copied ? "teal" : "gray"}
-                                            variant="subtle"
-                                            onClick={copy}
-                                        >
-                                            {copied ? (
-                                                <FaCheck />
-                                            ) : (
-                                                <IoCopyOutline />
-                                            )}
-                                        </ActionIcon>
-                                    </Tooltip>
-                                );
-                            }}
-                        </CopyButton>
+                        {copied ? (
+                            <>
+                                <span>Copied</span>
+                                <span>
+                                    <FaCheck />
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <span>Copy Code</span>
+                                <span>
+                                    <IoCopyOutline />
+                                </span>
+                            </>
+                        )}
                     </button>
                 </div>
             </div>
