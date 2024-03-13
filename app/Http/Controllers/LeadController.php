@@ -120,12 +120,14 @@ class LeadController extends Controller
         $username  = $request->username;
         $coupon = $request->coupon;
 
-        $commission = Settings::where('key', 'commission')->first()->value;
+        $commission = Settings::where('key', 'commission')->first();
 
-        if ($commission) {
-            $commission = (float) $commission;
+        if (!$commission) {
+            return response()->json([
+                'error' => 'Please set Commission in Global Site Settings'
+            ], 403);
         } else {
-            $commission  = 0;
+            $commission = (float) $commission['value'];
         }
 
 
@@ -190,14 +192,15 @@ class LeadController extends Controller
 
         $prevStatus = $lead->status;
 
-        $commission = Settings::where('key', 'commission')->first()->value;
+        $commission = Settings::where('key', 'commission')->first();
 
-        if ($commission) {
-            $commission = (float) $commission;
+        if (!$commission) {
+            return response()->json([
+                'error' => 'Please set Commission in Global Site Settings'
+            ], 403);
         } else {
-            $commission  = 0;
+            $commission = (float) $commission['value'];
         }
-
         if (!$request->status || !in_array($request->status, ['shipped', 'pending'])) {
             return response()->json([
                 'error' => 'Lead Status is invalid'

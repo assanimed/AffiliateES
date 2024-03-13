@@ -140,7 +140,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             onChange={(e) =>
                                 setData("commission", e.target.value)
                             }
-                            placeholder="Full Name"
+                            placeholder="Commission value"
                         />
                     </div>
                     <div className="mb-4 flex-1 max-w-56">

@@ -77,7 +77,7 @@ const LeadForm = () => {
                             type="text"
                             value={data?.title}
                             onChange={(e) =>
-                                setData("suername", e.target.value)
+                                setData("username", e.target.value)
                             }
                             placeholder="Username"
                         />

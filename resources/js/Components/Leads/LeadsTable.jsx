@@ -56,7 +56,7 @@ const LeadsTable = ({ data }) => {
 
     const mappedLeads = data.map((lead) => ({
         id: lead?.id,
-        username: lead?.affiliate?.user?.username,
+        user: lead?.affiliate?.user,
         status: lead?.status,
         created_at: new Date(lead?.created_at).toLocaleDateString() ?? "-",
     }));
@@ -78,6 +78,8 @@ const LeadsTable = ({ data }) => {
     const renderCell = React.useCallback((lead, columnKey) => {
         const cellValue = lead[columnKey];
 
+        console.log("le", lead);
+
         switch (columnKey) {
             case "ID":
                 return (
@@ -94,10 +96,10 @@ const LeadsTable = ({ data }) => {
                                 lead?.affiliate?.user?.avatar?.url ??
                                 "/avatar/default.png",
                         }}
-                        description={lead.username}
+                        description={lead?.user?.username}
                         name={cellValue}
                     >
-                        {lead.username}
+                        {lead?.user?.username}
                     </User>
                 );
             case "created_at":
