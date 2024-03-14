@@ -97,22 +97,22 @@ const UserDashboardGrid = () => {
         {
             key: "leads",
             data: leads,
-            text: "TOTAL LEADS",
+            text: "TOTAL DE CLIENTES POTENCIALES",
         },
         {
             key: "notShipped",
             data: notShipped,
-            text: "NOT SHIPPED",
+            text: "NO ENVIADO",
         },
         {
             key: "earning",
             data: earning,
-            text: "TOTAL EARNING",
+            text: "GANANCIA TOTAL",
         },
         {
             key: "performance",
             data: performance,
-            text: "Performance",
+            text: "Rendimiento",
         },
     ];
 

@@ -35,7 +35,7 @@ const OfferItem = ({ offer }) => {
                         <span>
                             <FaFileZipper />
                         </span>
-                        <span>Download</span>
+                        <span>Descargar</span>
                     </Link>
                 </div>
             </div>

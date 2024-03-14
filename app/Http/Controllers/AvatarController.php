@@ -57,7 +57,7 @@ class AvatarController extends Controller
         $user->avatar()->create(["url" => "/users/" . $user->id . "/avatar"]);
 
 
-        return response()->json(['message' => "Avatar has been added", "url" => "/users/" . $user->id . "/avatar"]);
+        return response()->json(['message' => "El avatar ha sido añadido", "url" => "/users/" . $user->id . "/avatar"]);
     }
 
     /**
@@ -102,6 +102,6 @@ class AvatarController extends Controller
 
 
 
-        return response()->json(['message' => "Avatar has beend eleted Successfully"]);
+        return response()->json(['message' => "El avatar ha sido eliminado con éxito"]);
     }
 }

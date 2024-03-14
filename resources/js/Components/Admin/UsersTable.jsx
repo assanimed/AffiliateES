@@ -59,7 +59,7 @@ export default function UsersTable() {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-2">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Los datos se están cargando...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
@@ -68,12 +68,12 @@ export default function UsersTable() {
                 <TablePreview users={data?.data} />
             ) : (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Users Yet
+                    Aún no hay usuarios
                 </h1>
             )}
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Users
+                    Error al cargar usuarios
                 </h1>
             )}
         </>

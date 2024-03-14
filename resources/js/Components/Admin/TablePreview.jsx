@@ -29,11 +29,11 @@ import {
 } from "@/redux/features/paginate/filterSlice";
 
 const columns = [
-    { name: "USER", uid: "name" },
-    { name: "JOINED AT", uid: "created_at" },
-    { name: "STATUS", uid: "status" },
-    { name: "EARNING", uid: "earning" },
-    { name: "ACTIONS", uid: "actions" },
+    { name: "USUARIO", uid: "name" },
+    { name: "SE UNIÓ EL", uid: "created_at" },
+    { name: "ESTADO", uid: "status" },
+    { name: "GANANCIAS", uid: "earning" },
+    { name: "ACCIONES", uid: "actions" },
 ];
 
 const statusColorMap = {
@@ -72,6 +72,12 @@ const TablePreview = ({ users }) => {
             ? user?.profile?.phone_number
             : "none",
     }));
+
+    const esStatus = {
+        approved: "Aprobado",
+        pending: "Pendiente",
+        banned: "Bloqueado",
+    };
 
     const SortTable = (by) => {
         dispatch(setSortBy(by));
@@ -123,7 +129,7 @@ const TablePreview = ({ users }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {esStatus[cellValue]}
                     </Chip>
                 );
             case "actions":

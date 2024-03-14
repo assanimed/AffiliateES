@@ -1,6 +1,6 @@
 import React from "react";
 import { BiSolidUserBadge } from "react-icons/bi";
-import { Avatar } from "@nextui-org/react";
+import { Avatar, Divider } from "@nextui-org/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 import { useDispatch } from "react-redux";
@@ -70,17 +70,17 @@ const Header = () => {
                             </button>
                         </PopoverTrigger>
                         <PopoverContent className="rounded-md">
-                            <div className="px-2 py-2">
+                            <div className="px-2 py-2 flex flex-col items-end">
                                 {auth?.user?.role === "admin" ? (
                                     <>
                                         <Link
                                             href="/profile"
                                             className="flex items-center gap-2 hover:text-slate-500   px-5 py-2 rounded"
                                         >
-                                            <span>Profile</span>
+                                            <span>Perfil</span>
                                             <BiSolidUserBadge />
                                         </Link>
-                                        <hr />
+                                        <Divider />
                                     </>
                                 ) : (
                                     ""
@@ -88,19 +88,19 @@ const Header = () => {
 
                                 <Link
                                     href="/security"
-                                    className="flex items-center gap-2 hover:text-slate-500  px-5 py-2 rounded"
+                                    className="flex items-center justify-between gap-2 hover:text-slate-500  px-5 py-2 rounded"
                                 >
-                                    <span>Security</span>
+                                    <span>Seguridad</span>
                                     <RiLockPasswordFill />
                                 </Link>
-                                <hr />
+                                <Divider />
                                 <Link
                                     href="/logout"
                                     method="post"
                                     as="button"
-                                    className="flex items-center gap-2 hover:text-slate-500  px-5 py-2 rounded"
+                                    className="flex items-center  justify-between gap-2 hover:text-slate-500  px-5 py-2 rounded"
                                 >
-                                    <span>Log out</span>
+                                    <span>Cerrar sesión</span>
                                     <HiLogout />
                                 </Link>
                             </div>

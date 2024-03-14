@@ -43,6 +43,8 @@ class RegisteredUserController extends Controller
             'email' => 'required|email|string|lowercase|max:255|min:5|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'privacy_policy' => ['required', new TrueValue]
+        ], [
+            "password.confirmed" => "Las contraseñas no coinciden",
         ]);
 
 

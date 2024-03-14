@@ -18,12 +18,12 @@ const Payouts = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Payments" />
+            <Head title="Pagos" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Payouts</h1>
+                    <h1 className="text-3xl font-bold">Pagos</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -40,12 +40,12 @@ const Payouts = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem
                                 startContent={<MdOutlinePayments />}
                             >
-                                Payout
+                                Pagos
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
@@ -65,7 +65,7 @@ const Payouts = () => {
                                     "group-data-[selected=true]:text-white px-5 rounded-none",
                             }}
                         >
-                            <Tab key="Requests" title="Request">
+                            <Tab key="Solicitudes" title="Solicitudes">
                                 <div>
                                     <Suspense
                                         fallback={
@@ -78,7 +78,7 @@ const Payouts = () => {
                                     </Suspense>
                                 </div>
                             </Tab>
-                            <Tab key="History" title="History">
+                            <Tab key="Historia" title="Historia">
                                 <div>
                                     <Suspense
                                         fallback={

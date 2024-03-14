@@ -33,7 +33,7 @@ const PayoutsRequests = () => {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-5">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Los datos se están cargando...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
@@ -41,7 +41,7 @@ const PayoutsRequests = () => {
 
             {!data?.data?.length && isSuccess ? (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Requests Found
+                    No se encontraron solicitudes
                 </h1>
             ) : (
                 ""
@@ -55,7 +55,7 @@ const PayoutsRequests = () => {
 
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Leads
+                    Error al cargar las solicitudes
                 </h1>
             )}
         </div>

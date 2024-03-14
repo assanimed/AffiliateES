@@ -15,12 +15,12 @@ const Profile = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Payments" />
+            <Head title="Configuración del Perfil" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Profile</h1>
+                    <h1 className="text-3xl font-bold">Perfil</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -37,9 +37,9 @@ const Profile = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
-                            <BreadcrumbItem>Profile</BreadcrumbItem>
+                            <BreadcrumbItem>Perfil</BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const Profile = () => {
                                     "group-data-[selected=true]:text-white px-5 rounded-none",
                             }}
                         >
-                            <Tab key="Requests" title="Request">
+                            <Tab key="Solicitud" title="Solicitud">
                                 <div>
                                     <Suspense
                                         fallback={

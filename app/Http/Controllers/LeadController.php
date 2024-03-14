@@ -124,7 +124,7 @@ class LeadController extends Controller
 
         if (!$commission) {
             return response()->json([
-                'error' => 'Please set Commission in Global Site Settings'
+                'error' => 'Por favor, establece la comisión en la configuración global del sitio'
             ], 403);
         } else {
             $commission = (float) $commission['value'];
@@ -134,13 +134,13 @@ class LeadController extends Controller
 
         if (!$coupon && !$username) {
             return response()->json([
-                'error' => 'need username or coupon to identify the user'
+                'error' => 'Se necesita el nombre de usuario o cupón para identificar al usuario'
             ], 403);
         }
 
         if (!$request->status || !in_array($request->status, ['shipped', 'pending'])) {
             return response()->json([
-                'error' => 'Lead Status is invalid'
+                'error' => 'El estado del cliente potencial no es válido'
             ], 403);
         }
 
@@ -162,7 +162,7 @@ class LeadController extends Controller
 
         if (!$user) {
             return response()->json([
-                'error' => 'No User Found'
+                'error' => 'No se encontró ningún usuario'
             ], 403);
         }
 
@@ -180,7 +180,7 @@ class LeadController extends Controller
         }
 
         return response()->json([
-            'success' => "Lead created Successfully",
+            'success' => "Cliente potencial creado con éxito",
             'lead' => $lead
         ], 201);
     }
@@ -196,14 +196,14 @@ class LeadController extends Controller
 
         if (!$commission) {
             return response()->json([
-                'error' => 'Please set Commission in Global Site Settings'
+                'error' => 'Por favor, establece la comisión en la configuración global del sitio'
             ], 403);
         } else {
             $commission = (float) $commission['value'];
         }
         if (!$request->status || !in_array($request->status, ['shipped', 'pending'])) {
             return response()->json([
-                'error' => 'Lead Status is invalid'
+                'error' => 'El estado del cliente potencial no es válido'
             ], 403);
         }
 
@@ -225,7 +225,7 @@ class LeadController extends Controller
         }
 
         return response()->json([
-            'success' => "Lead Updated Successfully",
+            'success' => "Cliente potencial actualizado con éxito",
             'lead' => $lead
         ], 201);
     }

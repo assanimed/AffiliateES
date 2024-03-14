@@ -13,14 +13,14 @@ export default function checkPasswordStrength(password) {
     // Strength rating
     switch (strength) {
         case 0:
-            return "Very Weak";
+            return "Muy débil";
         case 1:
         case 2:
-            return "Weak";
+            return "Débil";
         case 3:
-            return "Medium";
+            return "Media";
         case 4:
         case 5:
-            return "Strong";
+            return "Fuerte";
     }
 }

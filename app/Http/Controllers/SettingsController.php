@@ -42,11 +42,11 @@ class SettingsController extends Controller
             $logo->delete();
 
             return response()->json([
-                'success' => "Logo Deleted Successfully",
+                'success' => "Logo eliminado con éxito",
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => 'Failed to Delete Logo Image'
+                'error' => 'Error al eliminar la imagen del logo'
             ], 403);
         }
     }
@@ -75,7 +75,7 @@ class SettingsController extends Controller
 
         if ($minPayout <= 0) {
             return response()->json(["errors" => [
-                'minPayout' => "value must greator than 0"
+                'minPayout' => "El valor debe ser mayor que 0"
             ]], 403);
         }
 
@@ -120,7 +120,7 @@ class SettingsController extends Controller
             Settings::updateOrCreate(["key" => $item['key']], $item);
         }
 
-        return response()->json(["success" => 'Settings Updated']);
+        return response()->json(["success" => 'Configuración actualizada']);
     }
 
     /**

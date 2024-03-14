@@ -57,7 +57,7 @@ class PayoutController extends Controller
     {
         $payoutRequest = Payout::with('user', 'user.affiliate')->where('id', $payout->id)->first();
 
-        return Inertia::render('Affiliate/FulfillPayout', [
+        return Inertia::render('Admin/FulfillPayout', [
             'payout' => $payoutRequest
         ]);
     }
@@ -69,7 +69,7 @@ class PayoutController extends Controller
 
         if (!$amount) {
             return response()->json([
-                'error' => 'amount is Required',
+                'error' => 'El monto es requerido',
             ], 403);
         }
 
@@ -78,7 +78,7 @@ class PayoutController extends Controller
 
         if ($amount != (float) $payout->amount) {
             return response()->json([
-                'error' => 'Amout must Equat request amout to Fullfill Request',
+                'error' => 'El monto debe ser igual al monto solicitado para cumplir con la solicitud',
             ], 403);
         }
 
@@ -86,7 +86,7 @@ class PayoutController extends Controller
         $payout->save();
 
         return response()->json([
-            'success' => "Payout request fullfilled Successfully",
+            'success' => "Solicitud de pago completada exitosamente",
         ], 201);
     }
 
@@ -105,20 +105,20 @@ class PayoutController extends Controller
 
         if ($amount < $minPayout) {
             return response()->json([
-                'error' => 'amount is must be greator than Minimum Payout',
+                'error' => 'El monto debe ser mayor que el pago mínimo',
             ], 403);
         }
 
 
         if (!$amount) {
             return response()->json([
-                'error' => 'amount is Required',
+                'error' => 'El monto es requerido',
             ], 403);
         }
 
         if ($amount > $balance) {
             return response()->json([
-                'error' => 'Your Balance is Low',
+                'error' => 'Tu saldo es bajo',
             ], 403);
         }
 
@@ -137,7 +137,7 @@ class PayoutController extends Controller
             $user->affiliate->save();
 
             return response()->json([
-                'success' => "Request Submitted Successfully",
+                'success' => "Solicitud enviada con éxito",
             ], 201);
         }
 

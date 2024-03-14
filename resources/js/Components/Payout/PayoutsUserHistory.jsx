@@ -44,7 +44,7 @@ const PayoutsUserHistory = ({ user }) => {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-5">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Los datos se están cargando...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
@@ -52,7 +52,7 @@ const PayoutsUserHistory = ({ user }) => {
 
             {!data?.data?.length && isSuccess ? (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Payments To show
+                    Sin Pagos Que mostrar
                 </h1>
             ) : (
                 ""
@@ -66,7 +66,7 @@ const PayoutsUserHistory = ({ user }) => {
 
             {isError ? (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Leads
+                    No se pudieron cargar los pagos
                 </h1>
             ) : (
                 ""

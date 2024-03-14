@@ -31,14 +31,15 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Iniciar sesión" />
             <>
                 <div className="bg-white px-6 py-6  sm:rounded-lg">
                     <h1 className="text-center font-bold text-2xl text-[#172B4D] mb-2">
-                        AFFILIATE LOGIN
+                        Inicio de sesión de Afiliado
                     </h1>
                     <h3 className="text-center text-sm text-[#172B4D] mb-2">
-                        Welcome back! Please login to continue.
+                        ¡Bienvenido de nuevo! Por favor, inicie sesión para
+                        continuar.
                     </h3>
                     <Box pos="relative">
                         <LoadingOverlay
@@ -56,7 +57,7 @@ export default function Login({ status, canResetPassword }) {
                                         Icon={
                                             <MdOutlineMailOutline className="text-2xl text-gray-500" />
                                         }
-                                        label="Username or email"
+                                        label="Nombre de usuario o correo electrónico"
                                         value={data.username}
                                         className="mt-1 block w-full"
                                         autoComplete="username"
@@ -77,7 +78,7 @@ export default function Login({ status, canResetPassword }) {
                                         id="password"
                                         type="password"
                                         name="password"
-                                        label="Password"
+                                        label="Contraseña"
                                         Icon={
                                             <RiLockPasswordLine className="text-2xl text-gray-500" />
                                         }
@@ -103,7 +104,7 @@ export default function Login({ status, canResetPassword }) {
                                         setData("remember", checked)
                                     }
                                 >
-                                    Remember me
+                                    Recuérdame
                                 </Checkbox>
                             </div>
 
@@ -119,7 +120,7 @@ export default function Login({ status, canResetPassword }) {
                                         />
                                     )}
 
-                                    {!processing && <span>Login</span>}
+                                    {!processing && <span>Iniciar sesión</span>}
                                 </button>
                             </div>
                         </form>
@@ -127,12 +128,12 @@ export default function Login({ status, canResetPassword }) {
                 </div>
                 <div className="flex my-5 justify-center text-white">
                     <span>
-                        New to Product?{" "}
+                        ¿Eres nuevo en el producto?
                         <Link
                             href="/register"
-                            className="text-indigo-400 font-bold"
+                            className="text-indigo-400 px-2 font-bold"
                         >
-                            Sign Up
+                            Regístrate Ahora
                         </Link>
                     </span>
                 </div>

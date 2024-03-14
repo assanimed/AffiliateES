@@ -43,7 +43,7 @@ class AssetsController extends Controller
 
 
             $extension = $file->getClientOriginalExtension();
-            $type = in_array($extension, ['mp4', 'avi', 'mkv']) ? 'video':'image';
+            $type = in_array($extension, ['mp4', 'avi', 'mkv']) ? 'video' : 'image';
 
 
             $storePath = ($type === 'video') ? 'assets/videos' : 'assets/images';
@@ -70,11 +70,10 @@ class AssetsController extends Controller
                 "extension" =>  $extension,
             ]);
 
-            return response()->json(["asset" => $asset , 'path' => $path]);
+            return response()->json(["asset" => $asset, 'path' => $path]);
         } else {
-            return response()->json(['error' => 'Invalid file uploaded'], 422);
+            return response()->json(['error' => 'Archivo inválido'], 422);
         }
-
     }
 
     /**
@@ -106,14 +105,14 @@ class AssetsController extends Controller
 
         $filePath = $asset->path;
         if (!Storage::exists($filePath)) {
-            return response()->json(["error" => "file not found"], 404);
+            return response()->json(["error" => "Archivo no encontrado"], 404);
         }
 
         if (Storage::delete($filePath)) {
             $asset->delete();
-            return response()->json(["success" => "file Delete", 'asset' => $asset], 200);
+            return response()->json(["success" => "Eliminar archivo", 'asset' => $asset], 200);
         } else {
-            return response()->json(["error" => "file not found" ,"asset" => $cp], 400);
+            return response()->json(["error" => "Archivo no encontrado", "asset" => $cp], 400);
         }
     }
 }

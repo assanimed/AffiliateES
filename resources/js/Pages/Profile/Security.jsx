@@ -13,7 +13,7 @@ export default function Security({ auth, mustVerifyEmail, status }) {
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Security
+                    Seguridad
                 </h2>
             }
         >
@@ -21,7 +21,7 @@ export default function Security({ auth, mustVerifyEmail, status }) {
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Security</h1>
+                    <h1 className="text-3xl font-bold">Seguridad</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -38,9 +38,9 @@ export default function Security({ auth, mustVerifyEmail, status }) {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
-                            <BreadcrumbItem>Security</BreadcrumbItem>
+                            <BreadcrumbItem>Seguridad</BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
                 </div>

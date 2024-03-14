@@ -7,39 +7,39 @@ import { MdOutlinePayments } from "react-icons/md";
 
 const HOME = {
     active: "/dashboard",
-    label: "Home",
+    label: "Inicio",
     Icon: BiHomeAlt,
     href: "/",
 };
 const OFFERS = {
     active: "/offers",
-    label: "Offers",
+    label: "Ofertas",
     Icon: BiSolidOffer,
     href: "/offers",
 };
 const LEADS = {
     active: "/leads",
-    label: "Leads",
+    label: "Clientes potenciales",
     Icon: IoMagnetOutline,
     href: "/leads",
 };
 const USERS = {
     active: "/users",
-    label: "Users",
+    label: "Usuarios",
     Icon: HiOutlineUsers,
     href: "/users",
 };
 
 const PAYOUTS = {
     active: "/payouts",
-    label: "Payouts",
+    label: "Pagos",
     Icon: MdOutlinePayments,
     href: "/payouts",
 };
 
 const SETTINGS = {
     active: "/settings",
-    label: "Settings",
+    label: "Ajustes",
     Icon: IoSettingsOutline,
     href: "/settings",
 };

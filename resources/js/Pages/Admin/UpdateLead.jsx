@@ -18,12 +18,14 @@ const UpdateLead = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Offers" />
+            <Head title="Actualizar cliente potencial" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Update Lead</h1>
+                    <h1 className="text-3xl font-bold">
+                        Actualizar cliente potencial{" "}
+                    </h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -40,13 +42,13 @@ const UpdateLead = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<IoMagnetOutline />}>
-                                <Link href="/leads">Leads</Link>
+                                <Link href="/leads">Clientes potenciales</Link>
                             </BreadcrumbItem>
 
-                            <BreadcrumbItem>Update</BreadcrumbItem>
+                            <BreadcrumbItem>Actualizar</BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
                 </div>

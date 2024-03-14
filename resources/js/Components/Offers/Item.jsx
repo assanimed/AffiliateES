@@ -33,7 +33,7 @@ const Item = ({ offer }) => {
                     <span>
                         <LuHardDriveDownload />
                     </span>
-                    <span>Download</span>
+                    <span>Descargar</span>
                 </a>
             </div>
         </div>

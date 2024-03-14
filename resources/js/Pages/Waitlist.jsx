@@ -12,7 +12,7 @@ const Waitlist = () => {
                 <Head title="waitlist" />
                 <div className="bg-white px-6 py-6  sm:rounded-lg">
                     <h1 className="my-2 text-2xl font-bold text-center uppercase">
-                        Thank You for Join US
+                        GRACIAS POR UNIRTE A NOSOTROS
                     </h1>
 
                     <div className="my-10">
@@ -24,11 +24,11 @@ const Waitlist = () => {
                     <div className="text-center font-bold mt-5">
                         <span>
                             We've received your application. Our team will
-                            contact you soon about approval. You can also{" "}
-                            <a href="/" className="text-indigo-500 font-italic">
-                                reach out
-                            </a>{" "}
-                            to us if you have any questions.
+                            contact you soon about approval. You can also to us
+                            if you have any questions. Hemos recibido su
+                            solicitud. Nuestro equipo se comunicará con usted
+                            pronto para obtener la aprobación. También puede{" "}
+                            comunicarse con nosotros si tiene alguna pregunta.
                         </span>
                     </div>
 
@@ -39,7 +39,7 @@ const Waitlist = () => {
                             as="button"
                             className="flex items-center gap-2 bg-indigo-500 text-white px-5 py-2 rounded"
                         >
-                            <span>Logout</span>
+                            <span>Cerrar sesión</span>
                             <HiLogout />
                         </Link>
                     </div>

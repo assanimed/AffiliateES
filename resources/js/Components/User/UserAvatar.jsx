@@ -79,8 +79,8 @@ const UserAvatar = () => {
                 {(isUpdateError || isDeleteError) && showInfo ? (
                     <div className="bg-red-500 text-white px-2 py-1 rounded">
                         {isUpdateError
-                            ? "Fail to Update Avatar"
-                            : "Failed to delete Avatar"}
+                            ? "Error al actualizar el avatar"
+                            : "Error al eliminar el avatar"}
                     </div>
                 ) : (
                     ""
@@ -89,8 +89,8 @@ const UserAvatar = () => {
                 {(isDeleteSUccess || isUpdateSUccess) && showInfo ? (
                     <div className="bg-indigo-500 text-white px-2 py-1 rounded">
                         {isUpdateSUccess
-                            ? "Avatar Updated Successfully"
-                            : "Avatar Has been Delete SuccessFully"}
+                            ? "El avatar se ha actualizado exitosamente"
+                            : "El avatar ha sido eliminado exitosamente"}
                     </div>
                 ) : (
                     ""
@@ -101,7 +101,7 @@ const UserAvatar = () => {
                     className="block text-gray-700 text-sm font-bold mb-2"
                     for="logoImage"
                 >
-                    Set Profile Avatar/Picture
+                    Establecer Avatar/Imagen de Perfil
                 </label>
                 <AvatarPlace
                     handleSave={handleSave}

@@ -48,10 +48,10 @@ export default function Register() {
             <Head title="Register" />
             <div className="bg-white px-6 py-6  sm:rounded-lg">
                 <h1 className="text-center font-bold text-2xl text-[#172B4D] mb-2">
-                    AFFILIATE SING UP
+                    Registro de Afiliado
                 </h1>
                 <h3 className="text-center text-sm text-[#172B4D] mb-2">
-                    Hey there! Let's get started.
+                    ¡Hola! Empecemos.
                 </h3>
                 <form onSubmit={submit}>
                     <div className="flex flex-col gap-4 mt-10">
@@ -59,7 +59,7 @@ export default function Register() {
                             <TextInput
                                 id="name"
                                 name="name"
-                                label="Name"
+                                label="Nombre"
                                 Icon={
                                     <LuUser className="text-2xl text-gray-500" />
                                 }
@@ -87,7 +87,7 @@ export default function Register() {
                                 Icon={
                                     <MdOutlineMailOutline className="text-2xl text-gray-500" />
                                 }
-                                label="Username"
+                                label="Nombre de Usuario"
                                 value={data.username}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
@@ -110,7 +110,7 @@ export default function Register() {
                                 Icon={
                                     <MdOutlineMailOutline className="text-2xl text-gray-500" />
                                 }
-                                label="E-mail"
+                                label="Correo electrónico"
                                 value={data.email}
                                 className="mt-1 block w-full"
                                 autoComplete="email"
@@ -131,7 +131,7 @@ export default function Register() {
                                 id="password"
                                 type="password"
                                 name="password"
-                                label="Password"
+                                label="Contraseña"
                                 Icon={
                                     <RiLockPasswordLine className="text-2xl text-gray-500" />
                                 }
@@ -145,7 +145,7 @@ export default function Register() {
                             />
                             {pwdStrength && (
                                 <span className="text-sm mt-2 inline-block">
-                                    Password Strength:{" "}
+                                    Seguridad de la contraseña:{" "}
                                     <span className="text-[#2DCEAA] font-bold">
                                         {pwdStrength}
                                     </span>
@@ -161,7 +161,7 @@ export default function Register() {
                                 id="password_confirmation"
                                 type="password"
                                 name="password_confirmation"
-                                label="Password Confimation"
+                                label="Confirmación de Contraseña"
                                 Icon={
                                     <RiLockPasswordLine className="text-2xl text-gray-500" />
                                 }
@@ -191,12 +191,12 @@ export default function Register() {
                                 setData("privacy_policy", checked)
                             }
                         >
-                            I agree with{" "}
+                            acepto la
                             <Link
-                                className="text-blue-600"
+                                className="text-blue-600 px-1"
                                 href="/privacy-policy"
                             >
-                                Privacy Policy
+                                Política de Privacidad
                             </Link>
                         </Checkbox>
                         <InputError
@@ -211,7 +211,7 @@ export default function Register() {
                             href={route("login")}
                             className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Already registered?
+                            ¿Ya estás registrado?
                         </Link>
                     </div>
 
@@ -220,7 +220,7 @@ export default function Register() {
                         href={route("login")}
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Already registered?
+                    ¿Ya estás registrado?
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
@@ -232,7 +232,7 @@ export default function Register() {
                             disabled={processing}
                             className="bg-indigo-500 text-white px-20 py-2 rounded-md"
                         >
-                            Sign Up
+                            Regístrate Ahora
                         </button>
                     </div>
                 </form>

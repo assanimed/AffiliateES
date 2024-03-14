@@ -17,7 +17,7 @@ const EditPopOver = ({ children, link, label, Icon }) => {
                             className="flex items-center gap-2 hover:text-slate-500  px-5 py-2 rounded"
                         >
                             {Icon ? Icon : <CiEdit />}
-                            <span>{label ? label : "Edit"}</span>
+                            <span>{label ? label : "Editar"}</span>
                         </Link>
                     </div>
                 </PopoverContent>

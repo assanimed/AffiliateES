@@ -27,15 +27,20 @@ import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
     { name: "id", uid: "id" },
-    { name: "username", uid: "username" },
-    { name: "STATUS", uid: "status" },
-    { name: "created_at", uid: "created_at" },
-    { name: "ACTIONS", uid: "actions" },
+    { name: "Usuario", uid: "username" },
+    { name: "ESTADO", uid: "status" },
+    { name: "creado el", uid: "created_at" },
+    { name: "ACCIONES", uid: "actions" },
 ];
 
 const statusColorMap = {
     shipped: "primary",
     pending: "success",
+};
+
+const esStatus = {
+    shipped: "Enviado",
+    pending: "Pendiente",
 };
 
 const LeadsTable = ({ data }) => {
@@ -77,9 +82,6 @@ const LeadsTable = ({ data }) => {
 
     const renderCell = React.useCallback((lead, columnKey) => {
         const cellValue = lead[columnKey];
-
-        console.log("le", lead);
-
         switch (columnKey) {
             case "ID":
                 return (
@@ -93,11 +95,11 @@ const LeadsTable = ({ data }) => {
                         avatarProps={{
                             radius: "lg",
                             src:
-                                lead?.affiliate?.user?.avatar?.url ??
+                                lead?.user?.avatar?.url ??
                                 "/avatar/default.png",
                         }}
                         description={lead?.user?.username}
-                        name={cellValue}
+                        name={lead?.user?.name}
                     >
                         {lead?.user?.username}
                     </User>
@@ -118,7 +120,7 @@ const LeadsTable = ({ data }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {esStatus[cellValue]}
                     </Chip>
                 );
             case "actions":
@@ -157,8 +159,8 @@ const LeadsTable = ({ data }) => {
                     <Select
                         // label="Favorite Animal"
                         labelPlacement="outside"
-                        placeholder="Page Limit"
-                        className="max-w-xs py-0 md:w-32"
+                        placeholder="Límite de página"
+                        className="max-w-xs py-0 md:w-40"
                         onChange={handlePageLimitChange}
                         size="sm"
                     >

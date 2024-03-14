@@ -96,6 +96,7 @@ class StatsController extends Controller
             ->get()
             ->toArray(); */
 
+
         $leadsData = Lead::where('status', 'shipped')
             ->whereDate('created_at', '>=', $startOfMonth)
             ->whereDate('created_at', '<=', $endOfMonth)
@@ -104,6 +105,7 @@ class StatsController extends Controller
             ->orderBy('date')
             ->get()
             ->toArray();
+
 
 
         return collect($leadsData)->map(function ($item) use ($commission) {
@@ -127,7 +129,7 @@ class StatsController extends Controller
         $endOfWeek = $now->endOfWeek()->format('Y-m-d');
 
 
-        $leadsData = Lead::whereDate('created_at', '>=', $startOfWeek)
+        $leadsData = Lead::where('status', 'shipped')->whereDate('created_at', '>=', $startOfWeek)
             ->whereDate('created_at', '<=', $endOfWeek)
             ->selectRaw('DATE(created_at) as date, COUNT(*) as totalLeadsValue')
             ->groupBy('date')

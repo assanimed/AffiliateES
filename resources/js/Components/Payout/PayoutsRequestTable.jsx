@@ -8,13 +8,7 @@ import {
     TableCell,
     User,
     Chip,
-    Tooltip,
-    getKeyValue,
     Pagination,
-    PaginationItem,
-    PaginationCursor,
-    Select,
-    SelectItem,
 } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,22 +16,26 @@ import {
     setPageLimit,
 } from "@/redux/features/paginate/paginateSlice";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { setSortBy, setSortType } from "@/redux/features/paginate/filterSlice";
+import { setSortType } from "@/redux/features/paginate/filterSlice";
 import EditPopOver from "../Admin/EditPopOver";
 import { FaCheckToSlot } from "react-icons/fa6";
 
 const columns = [
     { name: "ID", uid: "id" },
-    { name: "User", uid: "user" },
-    { name: "Amount", uid: "amount" },
-    { name: "Status", uid: "status" },
-    { name: "Created At", uid: "created_at" },
-    { name: "Actions", uid: "actions" },
+    { name: "Usuario", uid: "user" },
+    { name: "Monto", uid: "amount" },
+    { name: "Estado", uid: "status" },
+    { name: "Creado el", uid: "created_at" },
+    { name: "Acciones", uid: "actions" },
 ];
 
 const statusColorMap = {
     paid: "primary",
     request: "success",
+};
+
+const esStatus = {
+    request: "Solicitud",
 };
 
 const PayoutsRequestTable = ({ data }) => {
@@ -55,6 +53,7 @@ const PayoutsRequestTable = ({ data }) => {
 
     const cremappedPayouts = data.map((payout) => ({
         id: payout?.id,
+        user: payout?.user,
         amount: payout?.amount,
         status: payout?.status,
         created_at: new Date(payout?.created_at).toLocaleDateString() ?? "-",
@@ -74,7 +73,7 @@ const PayoutsRequestTable = ({ data }) => {
                     <div className="relative flex items-center justify-center gap-2">
                         <EditPopOver
                             Icon={<FaCheckToSlot />}
-                            label="Fulfull"
+                            label="Cumplir"
                             link={`/payouts/${payout?.id}/fulfill`}
                         >
                             <button className=" cursor-pointer bg-white rounded-full shadow-lg px-2 py-2">
@@ -87,10 +86,12 @@ const PayoutsRequestTable = ({ data }) => {
             case "user":
                 return (
                     <User
-                        name="Junior Garcia"
-                        description={" @jrgarciadev"}
+                        name={payout?.user?.name}
+                        description={payout?.user?.username}
                         avatarProps={{
-                            src: payout?.user?.avatar ?? "/avatar/default.png",
+                            src:
+                                payout?.user?.avatar?.url ??
+                                "/avatar/default.png",
                         }}
                     />
                 );
@@ -103,7 +104,7 @@ const PayoutsRequestTable = ({ data }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {esStatus[cellValue]}
                     </Chip>
                 );
             case "created_at":

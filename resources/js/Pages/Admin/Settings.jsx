@@ -10,13 +10,13 @@ const Settings = ({ settingsData }) => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Site Settings" />
+            <Head title="Configuración del Sitio" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center justify-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold text-center">
-                        Site Settings
+                        Configuración del Sitio
                     </h1>
                 </div>
             </TopPage>

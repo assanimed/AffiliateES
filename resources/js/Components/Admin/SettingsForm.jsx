@@ -64,7 +64,8 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
             <form onSubmit={handleSubmit} className="w-full bg-white px-5 py-3">
                 {isError && showInfo ? (
                     <div className="bg-red-500 text-white px-2 py-1 rounded">
-                        Failed to Update Setting Please Try Later
+                        Error al actualizar la configuración. Por favor,
+                        inténtalo más tarde.
                     </div>
                 ) : (
                     ""
@@ -72,7 +73,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
 
                 {isSuccess && showInfo ? (
                     <div className="bg-indigo-500 text-white px-2 py-1 rounded">
-                        Settings Updated Successfully
+                        Configuración actualizada con éxito
                     </div>
                 ) : (
                     ""
@@ -85,7 +86,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                         onClick={handleSubmit}
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        <span>{isLoading ? <Spinner /> : "Save"}</span>
+                        <span>{isLoading ? <Spinner /> : "Guardar"}</span>
                     </button>
                 </div>
                 <h2 className="text-xl my-2">Logo</h2>
@@ -95,7 +96,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="logoImage"
                         >
-                            Logo Image
+                            Imagen del Logotipo
                         </label>
                         <LogoPlace
                             file={data?.logoFile}
@@ -108,7 +109,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="logoText"
                         >
-                            Alternative Text Logo
+                            Logotipo de Texto Alternativo
                         </label>
                         <input
                             className="shadow appearance-none  border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -118,19 +119,19 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             onChange={(e) =>
                                 setData("logoText", e.target.value)
                             }
-                            placeholder="logoText"
+                            placeholder="Logotexto"
                         />
                     </div>
                 </div>
                 <hr />
-                <h2 className="text-xl my-2">Commission & min Payout</h2>
+                <h2 className="text-xl my-2">Comisión y Pago Mínimo</h2>
                 <div className="flex gap-4 max-w-[600px] justify-between mt-5 flex-col sm:flex-row">
                     <div className="mb-4 flex-1 max-w-56">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="commission"
                         >
-                            Commission value
+                            Valor de la comisión
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -140,7 +141,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             onChange={(e) =>
                                 setData("commission", e.target.value)
                             }
-                            placeholder="Commission value"
+                            placeholder="Valor de la comisión"
                         />
                     </div>
                     <div className="mb-4 flex-1 max-w-56">
@@ -148,7 +149,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="minPayout"
                         >
-                            Minimum Payout
+                            Pago Mínimo
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -158,7 +159,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             onChange={(e) =>
                                 setData("minPayout", e.target.value)
                             }
-                            placeholder="Minimum Payout"
+                            placeholder="Pago Mínimo"
                         />
                         {isError && "minPayout" in error?.data?.errors ? (
                             <span className="text-xs text-red-500"></span>
@@ -169,14 +170,14 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                 </div>
                 <hr />
 
-                <h2 className="text-xl my-2">Telegram Support Link</h2>
+                <h2 className="text-xl my-2">Enlace de Soporte de Telegram</h2>
                 <div className="flex gap-4 md:gap-10">
                     <div className="mb-4 flex-1 max-w-56">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="telegram"
                         >
-                            telegram link
+                            enlace de telegram
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -186,7 +187,7 @@ const SettingsForm = ({ settingsData: dataSettings }) => {
                             onChange={(e) =>
                                 setData("telegram", e.target.value)
                             }
-                            placeholder="telegram URL"
+                            placeholder="url de telegram"
                         />
                     </div>
                 </div>

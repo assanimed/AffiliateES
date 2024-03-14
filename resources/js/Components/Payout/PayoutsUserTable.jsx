@@ -27,14 +27,19 @@ import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
     { name: "ID", uid: "id" },
-    { name: "Amount", uid: "amount" },
-    { name: "Status", uid: "status" },
-    { name: "Created At", uid: "created_at" },
+    { name: "Monto", uid: "amount" },
+    { name: "Estado", uid: "status" },
+    { name: "Creado En", uid: "created_at" },
 ];
 
 const statusColorMap = {
     paid: "primary",
     request: "success",
+};
+
+const esStatus = {
+    paid: "Pagado",
+    request: "Pendiente",
 };
 
 const PayoutsUserTable = ({ data }) => {
@@ -86,7 +91,7 @@ const PayoutsUserTable = ({ data }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {esStatus[cellValue]}
                     </Chip>
                 );
             case "created_at":

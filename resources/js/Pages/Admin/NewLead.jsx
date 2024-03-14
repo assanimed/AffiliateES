@@ -17,12 +17,14 @@ const NewLead = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Offers" />
+            <Head title="Nuevo cliente potencial" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">New Lead</h1>
+                    <h1 className="text-3xl font-bold">
+                        Nuevo cliente potencial
+                    </h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -39,13 +41,13 @@ const NewLead = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<IoMagnetOutline />}>
-                                <Link href="/leads">Leads</Link>
+                                <Link href="/leads">Clientes potenciales</Link>
                             </BreadcrumbItem>
 
-                            <BreadcrumbItem>New</BreadcrumbItem>
+                            <BreadcrumbItem>Nuevo</BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
                 </div>

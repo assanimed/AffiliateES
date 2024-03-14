@@ -16,7 +16,7 @@ const Chart = () => {
     const format = (data) => {
         return data?.map((el) => ({
             period: period === "year" ? el?.month : el?.date,
-            value: el?.totalLeadsValue,
+            valor: el?.totalLeadsValue,
         }));
     };
 
@@ -33,8 +33,10 @@ const Chart = () => {
         <div className="bg-white p-3 row-start-7 md:row-start-3 xl:row-start-2 col-span-1 self-start sm:col-span-2 rounded shadow-md">
             <div className="mb-4 flex items-center px-3 justify-between">
                 <div>
-                    <span className="text-[10px] text-gray-400">OVERVIEW</span>
-                    <h5 className="text-gray-700">Leads Value</h5>
+                    <span className="text-[10px] text-gray-400">
+                        visión general
+                    </span>
+                    <h5 className="text-gray-700">Valor de Leads</h5>
                 </div>
 
                 <div className="flex gap-x-2">
@@ -42,19 +44,19 @@ const Chart = () => {
                         onClick={() => handlePeriodSwitch("week")}
                         className={switchBtnClasses(period, "week")}
                     >
-                        Week
+                        Semana
                     </button>
                     <button
                         onClick={() => handlePeriodSwitch("month")}
                         className={switchBtnClasses(period, "month")}
                     >
-                        Month
+                        Mes
                     </button>
                     <button
                         onClick={() => handlePeriodSwitch("year")}
                         className={switchBtnClasses(period, "year")}
                     >
-                        Year
+                        Año
                     </button>
                 </div>
             </div>
@@ -66,7 +68,7 @@ const Chart = () => {
                             unit=" $"
                             data={format(data?.data)}
                             dataKey="period"
-                            series={[{ name: "value", color: "indigo.6" }]}
+                            series={[{ name: "valor", color: "indigo.6" }]}
                             tooltipAnimationDuration={200}
                             curveType="natural"
                         />

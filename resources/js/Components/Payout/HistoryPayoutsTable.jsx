@@ -27,11 +27,15 @@ import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
     { name: "ID", uid: "id" },
-    { name: "User", uid: "user" },
-    { name: "Amount", uid: "amount" },
-    { name: "Status", uid: "status" },
-    { name: "Created At", uid: "created_at" },
+    { name: "Usuario", uid: "user" },
+    { name: "Monto", uid: "amount" },
+    { name: "Estado", uid: "status" },
+    { name: "Creado el", uid: "created_at" },
 ];
+
+const esStatus = {
+    paid: "Pagado",
+};
 
 const statusColorMap = {
     paid: "primary",
@@ -89,7 +93,7 @@ const HistoryPayoutsTable = ({ data }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {esStatus[cellValue]}
                     </Chip>
                 );
             case "created_at":

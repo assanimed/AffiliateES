@@ -25,22 +25,22 @@ const DashboardGrid = () => {
         {
             key: "leads",
             data: leads,
-            text: "TOTAL LEADS",
+            text: "TOTAL DE CLIENTES POTENCIALES",
         },
         {
             key: "notShipped",
             data: notShipped,
-            text: "NOT SHIPPED",
+            text: "NO ENVIADO",
         },
         {
             key: "payouts",
             data: payouts,
-            text: "PAYOUTS",
+            text: "PAGOS",
         },
         {
             key: "users",
             data: users,
-            text: "TOTAL USERS",
+            text: "TOTAL DE USUARIOS",
         },
     ];
 

@@ -9,6 +9,11 @@ const LeadForm = () => {
     // const assets = useSelector((state) => state?.offer?.assets);
 
     const statuses = ["shipped", "pending"];
+    const esStatus = {
+        shipped: "enviado",
+        pending: "pendiente",
+    };
+
     const handleStatusChange = (e) => setData("status", e.target.value);
 
     const { data, setData, get } = useForm({
@@ -41,14 +46,14 @@ const LeadForm = () => {
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
                 <Link className="w-0 h-0" ref={backLink} href="/leads"></Link>
                 <div className="px-5 flex  items-center justify-between py-2  font-bold">
-                    <h3 className="text-xl">Submit New Lead</h3>
+                    <h3 className="text-xl">Registrar nuevo lead</h3>
                     <button
                         // disabled={processing}
                         type="submit"
                         // onClick={() => }
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        {isLoading ? <Spinner /> : "Save"}
+                        {isLoading ? <Spinner /> : "Guardar"}
                     </button>
                 </div>
 
@@ -69,7 +74,7 @@ const LeadForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="title"
                         >
-                            Username
+                            Nombre de usuario
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -79,7 +84,7 @@ const LeadForm = () => {
                             onChange={(e) =>
                                 setData("username", e.target.value)
                             }
-                            placeholder="Username"
+                            placeholder="Nombre de usuario"
                         />
                     </div>
                     <div className="text-xs text-slate-400 px-5">OR</div>
@@ -89,7 +94,7 @@ const LeadForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="title"
                         >
-                            Coupon
+                            Cupón
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -97,7 +102,7 @@ const LeadForm = () => {
                             type="text"
                             value={data?.coupon}
                             onChange={(e) => setData("coupon", e.target.value)}
-                            placeholder="Coupon Code"
+                            placeholder="Código de cupón"
                         />
                     </div>
                 </div>
@@ -108,14 +113,14 @@ const LeadForm = () => {
                                 className="block text-gray-700 text-sm font-bold mb-2"
                                 htmlFor="status"
                             >
-                                Status
+                                Estado
                             </label>
 
                             <Select
                                 // label="Favorite Animal"
                                 labelPlacement="outside"
                                 name="Status"
-                                placeholder="Lead Status"
+                                placeholder="Estado del cliente potencial"
                                 className="relative overflow-visible rounded-xs w-96 bg-background/0 "
                                 onChange={handleStatusChange}
                                 defaultSelectedKeys={[data?.role]}
@@ -127,7 +132,7 @@ const LeadForm = () => {
                                         className="bg-red"
                                         value={status}
                                     >
-                                        {status}
+                                        {esStatus[status]}
                                     </SelectItem>
                                 ))}
                             </Select>

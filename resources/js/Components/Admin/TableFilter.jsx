@@ -17,6 +17,13 @@ const TableFilter = () => {
 
     const Statuses = ["All", "Approved", "Pending", "Banned"];
 
+    const esStatus = {
+        All: "Todos",
+        Approved: "Aprobado",
+        Pending: "Pendiente",
+        Banned: "Bloqueado",
+    };
+
     const PageLimits = [5, 10, 20, 50, 100];
 
     const handleStatusChange = (e) => {
@@ -53,7 +60,7 @@ const TableFilter = () => {
                     name="search"
                     type="text"
                     onChange={debounceSearch}
-                    placeholder="search for a user"
+                    placeholder="Buscar un usuario"
                     className="flex-1 border-none focus:outline-none outline-none border-transparent focus:border-transparent focus:ring-0 w-60"
                 />
             </div>
@@ -62,13 +69,13 @@ const TableFilter = () => {
                 <Select
                     // label="Favorite Animal"
                     labelPlacement="outside"
-                    placeholder="Status"
+                    placeholder="Estado"
                     className="max-w-xs py-0 w-32"
                     onChange={handleStatusChange}
                 >
                     {Statuses.map((status) => (
-                        <SelectItem key={status} value={status}>
-                            {status}
+                        <SelectItem key={status} value={`${status}`}>
+                            {esStatus[status]}
                         </SelectItem>
                     ))}
                 </Select>
@@ -76,8 +83,8 @@ const TableFilter = () => {
                 <Select
                     // label="Favorite Animal"
                     labelPlacement="outside"
-                    placeholder="Page Limit"
-                    className="max-w-xs py-0 md:w-32"
+                    placeholder="Límite de página"
+                    className="max-w-xs py-0 md:w-40"
                     onChange={handlePageLimitChange}
                 >
                     {PageLimits.map((limit) => (

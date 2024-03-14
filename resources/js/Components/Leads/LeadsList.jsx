@@ -55,7 +55,7 @@ const LeadsList = () => {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-5">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Los datos se están cargando...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
@@ -64,13 +64,13 @@ const LeadsList = () => {
                 <LeadsTable data={data?.data} />
             ) : (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Leads Yet
+                    Aún no hay clientes potenciales
                 </h1>
             )}
 
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Leads
+                    Error al cargar los clientes potenciales
                 </h1>
             )}
         </div>

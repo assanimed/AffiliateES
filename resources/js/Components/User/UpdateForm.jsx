@@ -103,7 +103,7 @@ const UpdateForm = ({ user }) => {
         <div>
             {showNot ? (
                 <div className="bg-indigo-500 py-3 px-2 rounded text-white">
-                    User Updated Successfully
+                    Usuario actualizado exitosamente
                 </div>
             ) : (
                 ""
@@ -111,7 +111,7 @@ const UpdateForm = ({ user }) => {
 
             {showErr ? (
                 <div className="bg-red-500 py-3 px-2 rounded text-white">
-                    Failed to Update Information
+                    Error al actualizar la información
                 </div>
             ) : (
                 ""
@@ -123,7 +123,7 @@ const UpdateForm = ({ user }) => {
                         disabled={isUpdateLoading}
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        {isUpdateLoading ? <Spinner size="sm" /> : "Save"}
+                        {isUpdateLoading ? <Spinner size="sm" /> : "Guardar"}
                     </button>
                 </div>
 
@@ -131,14 +131,14 @@ const UpdateForm = ({ user }) => {
                     my="md"
                     className="bg-slate-300 h-[2px] rounded-full"
                 />
-                <h2 className="text-xl my-2">Basic Info</h2>
+                <h2 className="text-xl my-2">Información Básica</h2>
                 <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            for="username"
+                            for="name"
                         >
-                            Name
+                            Nombre
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -146,7 +146,7 @@ const UpdateForm = ({ user }) => {
                             type="text"
                             value={data?.name}
                             onChange={(e) => setData("name", e.target.value)}
-                            placeholder="Full Name"
+                            placeholder="Nombre"
                         />
                     </div>
                     <div className="mb-4 flex-1">
@@ -154,7 +154,7 @@ const UpdateForm = ({ user }) => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="username"
                         >
-                            Username
+                            Nombre de Usuario
                         </label>
                         <input
                             className="shadow appearance-none border border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -164,7 +164,7 @@ const UpdateForm = ({ user }) => {
                             onChange={(e) =>
                                 setData("username", e.target.value)
                             }
-                            placeholder="Username"
+                            placeholder="Nombre de Usuario"
                         />
                     </div>
                 </div>
@@ -174,30 +174,30 @@ const UpdateForm = ({ user }) => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             for="email"
                         >
-                            Email
+                            Correo Electrónico
                         </label>
                         <input
-                            className="shadow appearance-none border border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="email"
                             type="text"
                             value={data?.email}
-                            placeholder="Email"
+                            placeholder="Correo Electrónico"
                             onChange={(e) => setData("email", e.target.value)}
                         />
                     </div>
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            for="email"
+                            for="phone"
                         >
-                            Phone Number
+                            Número de Teléfono
                         </label>
                         <input
                             className="shadow appearance-none border border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="phone"
                             type="text"
                             value={data?.phone_number}
-                            placeholder="Phone Number"
+                            placeholder="Número de Teléfono"
                             onChange={(e) =>
                                 setData("phone_number", e.target.value)
                             }
@@ -208,7 +208,7 @@ const UpdateForm = ({ user }) => {
                     <>
                         <hr />
                         <h2 className="text-xl my-2">
-                            Billing Information / Profile
+                            Información de Facturación / Perfil
                         </h2>
                         <div className="flex gap-4 md:gap-10">
                             <div className="mb-4 flex-1">
@@ -216,7 +216,7 @@ const UpdateForm = ({ user }) => {
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="address"
                                 >
-                                    Address
+                                    Dirección
                                 </label>
                                 <input
                                     className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -236,12 +236,12 @@ const UpdateForm = ({ user }) => {
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="country"
                                 >
-                                    Country
+                                    País
                                 </label>
                                 <Select
                                     items={countries}
                                     id="country"
-                                    placeholder="Your Country"
+                                    placeholder="País"
                                     labelPlacement="outside"
                                     onChange={handleCountryChange}
                                     defaultSelectedKeys={
@@ -269,14 +269,14 @@ const UpdateForm = ({ user }) => {
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="city"
                                 >
-                                    City
+                                    Ciudad
                                 </label>
                                 <input
-                                    className="shadow appearance-none border border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="city"
                                     type="text"
                                     value={data?.city}
-                                    placeholder="City"
+                                    placeholder="Ciudad"
                                     onChange={(e) =>
                                         setData("city", e.target.value)
                                     }
@@ -286,21 +286,21 @@ const UpdateForm = ({ user }) => {
 
                         <hr />
 
-                        <h2 className="text-xl my-2">External Links</h2>
+                        <h2 className="text-xl my-2">Enlaces Externos</h2>
                         <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 md:gap-10">
                             <div className="mb-4 flex-1">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="instagram"
                                 >
-                                    Instagram URL
+                                    URL de Instagram
                                 </label>
                                 <input
                                     className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="instagram"
                                     type="text"
                                     value={data?.links?.instagram}
-                                    placeholder="insta username"
+                                    placeholder="nombre de usuario de insta"
                                     onChange={(e) =>
                                         setData("links", {
                                             ...data?.links,
@@ -321,7 +321,7 @@ const UpdateForm = ({ user }) => {
                                     id="toktok"
                                     type="text"
                                     value={data?.links?.tiktok}
-                                    placeholder="TikTok username"
+                                    placeholder="Nombre de usuario de TikTok"
                                     onChange={(e) =>
                                         setData("links", {
                                             ...data?.links,
@@ -337,14 +337,14 @@ const UpdateForm = ({ user }) => {
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="facebook"
                                 >
-                                    Facebook Page
+                                    Página de Facebook
                                 </label>
                                 <input
                                     className="shadow appearance-none  border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="facebook"
                                     type="text"
                                     value={data?.links?.facebook}
-                                    placeholder="facebook page"
+                                    placeholder="página de facebook"
                                     onChange={(e) =>
                                         setData("links", {
                                             ...data?.links,
@@ -361,7 +361,7 @@ const UpdateForm = ({ user }) => {
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                     for="others"
                                 >
-                                    Others if Any
+                                    Otros, si los Hay
                                 </label>
                                 <textarea
                                     className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

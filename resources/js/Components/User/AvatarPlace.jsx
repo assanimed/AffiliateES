@@ -12,11 +12,10 @@ const AvatarPlace = ({
     isLoading,
 }) => {
     const handleFile = (e) => {
-        console.log("image", image, file);
         const size = e.target.files[0].size / 1024 / 1024;
 
         if (size > 10) {
-            setError("file Size Exceeded 10MB");
+            setError("El archivo excede el tamaño máximo de 10MB");
             return;
         }
 
@@ -69,7 +68,7 @@ const AvatarPlace = ({
                     onClick={handleSave}
                     className="px-5 py-2 bg-indigo-500 text-white max-w-40 rounded"
                 >
-                    Save
+                    Guardar
                 </button>
             ) : (
                 <button
@@ -79,7 +78,7 @@ const AvatarPlace = ({
                     onClick={handleClick}
                     className="px-5 py-2 bg-indigo-500 text-white max-w-40 rounded"
                 >
-                    Change
+                    Cambiar
                 </button>
             )}
             {image || file ? (
@@ -92,7 +91,7 @@ const AvatarPlace = ({
                             onClick={handleDelete}
                             className="px-5 py-2 bg-red-500 text-white max-w-40 rounded"
                         >
-                            {isLoading ? "Deleting..." : "Delete"}
+                            {isLoading ? "Eliminando..." : "Eliminar"}
                         </button>
                     ) : (
                         <button
@@ -102,7 +101,7 @@ const AvatarPlace = ({
                             onClick={() => setData("avatar", null)}
                             className="px-5 py-2 bg-red-500 text-white max-w-40 rounded"
                         >
-                            Delete
+                            Eliminar
                         </button>
                     )}
                 </>

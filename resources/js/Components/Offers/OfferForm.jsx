@@ -28,14 +28,14 @@ const OfferhtmlForm = () => {
         <div>
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
                 <div className="px-5 flex  items-center justify-between py-2  font-bold">
-                    <h3 className="text-xl">Add New Offer</h3>
+                    <h3 className="text-xl">Agregar nueva oferta</h3>
                     <button
                         // disabled={processing}
                         type="submit"
                         // onClick={() => }
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        Save
+                        Guardar
                     </button>
                 </div>
 
@@ -49,7 +49,7 @@ const OfferhtmlForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="title"
                         >
-                            Title
+                            Título
                         </label>
                         <input
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -58,7 +58,7 @@ const OfferhtmlForm = () => {
                             required
                             value={data?.title}
                             onChange={(e) => setData("title", e.target.value)}
-                            placeholder="Offer Title"
+                            placeholder="Título de la oferta"
                         />
                     </div>
                     <div className="mb-4 flex-1">
@@ -66,7 +66,7 @@ const OfferhtmlForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="description"
                         >
-                            Description
+                            Descripción
                         </label>
                         <textarea
                             className="shadow appearance-none border-2 border-slate-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -87,7 +87,7 @@ const OfferhtmlForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="others"
                         >
-                            Assets
+                            Recursos
                         </label>
                         <Assets />
                     </div>

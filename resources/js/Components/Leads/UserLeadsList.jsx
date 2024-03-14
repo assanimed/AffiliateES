@@ -15,7 +15,6 @@ const UserLeadsList = () => {
         props: { affiliate },
     } = usePage();
 
-    // return <h1>CHEKC</h1>;
     const dispatch = useDispatch();
     const {
         sortType,
@@ -47,15 +46,15 @@ const UserLeadsList = () => {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-5">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Los datos se están cargando...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
             )}
 
-            {!data?.data?.length && isSuccess ? (
+            {!data?.data?.length && isSuccess && !isLoading ? (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Leads To show
+                    No hay clientes potenciales para mostrar
                 </h1>
             ) : (
                 ""
@@ -68,7 +67,7 @@ const UserLeadsList = () => {
 
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Leads
+                    Error al cargar los clientes potenciales
                 </h1>
             )}
         </div>

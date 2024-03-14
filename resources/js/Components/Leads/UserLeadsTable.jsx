@@ -31,8 +31,8 @@ import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
     { name: "ID", uid: "id" },
-    { name: "STATUS", uid: "status" },
-    { name: "Created At", uid: "created_at" },
+    { name: "Estado", uid: "status" },
+    { name: "Creado En", uid: "created_at" },
 ];
 
 const statusColorMap = {
@@ -76,6 +76,11 @@ const UserLeadsTable = ({ data }) => {
         dispatch(setPageLimit(e.target.value));
     };
 
+    const spStatus = {
+        shipped: "Enviado",
+        pending: "Pendiente",
+    };
+
     const renderCell = React.useCallback((lead, columnKey) => {
         const cellValue = lead[columnKey];
 
@@ -102,7 +107,7 @@ const UserLeadsTable = ({ data }) => {
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {spStatus[cellValue]}
                     </Chip>
                 );
             default:
@@ -123,12 +128,14 @@ const UserLeadsTable = ({ data }) => {
         <div>
             <div className="">
                 <div className="flex justify-between items-center px-5 my-2">
-                    <h1 className=" text-slate-500">Leads History</h1>
+                    <h1 className=" text-slate-500">
+                        Historial de Clientes Potenciales
+                    </h1>
                     <Select
                         items={PageLimits}
                         labelPlacement="outside"
-                        placeholder="Page Limit"
-                        className="max-w-xs py-0 md:w-32"
+                        placeholder="Límite de Páginas"
+                        className="max-w-md py-0 md:w-40"
                         onChange={handlePageLimitChange}
                         size="sm"
                     >

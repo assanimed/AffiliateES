@@ -37,14 +37,14 @@ const PayoutForm = () => {
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
                 <Link className="w-0 h-0" ref={backLink} href="/payouts"></Link>
                 <div className="px-5 flex  items-center justify-between py-2  font-bold">
-                    <h3 className="text-xl"> Request a Payout</h3>
+                    <h3 className="text-xl"> Solicitar un pago</h3>
                     <button
                         // disabled={processing}
                         type="submit"
                         // onClick={() => }
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        {isLoading ? <Spinner /> : "Request"}
+                        {isLoading ? <Spinner /> : "Solicitud"}
                     </button>
                 </div>
 
@@ -62,13 +62,13 @@ const PayoutForm = () => {
 
                 <div className="mt-5 mb-2">
                     <div>
-                        <span>Your Balance:</span>
+                        <span>Tu saldo:</span>
                         <span className="text-xl px-3 font-bold text-slate-800">
                             $ {auth?.user?.affiliate?.balance}
                         </span>
                     </div>
                     <span className="text-red-600 text-xs">
-                        Minimum Payout Amount {minPayout}$
+                        Monto Mínimo de Pago {minPayout}$
                     </span>
                 </div>
 
@@ -78,7 +78,7 @@ const PayoutForm = () => {
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="amount"
                         >
-                            Payout Amount
+                            Monto del pago
                         </label>
                         <input
                             className="shadow inline-block appearance-none border-2 border-slate-300 rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

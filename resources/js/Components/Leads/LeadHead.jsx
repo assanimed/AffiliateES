@@ -57,7 +57,7 @@ const LeadHead = () => {
                     name="search"
                     type="text"
                     onChange={debounceSearch}
-                    placeholder="search by usename or coupon"
+                    placeholder="buscar por nombre de usuario o cupón"
                     className="flex-1 border-none focus:outline-none outline-none border-transparent focus:border-transparent focus:ring-0 w-60"
                 />
             </div>
@@ -71,7 +71,7 @@ const LeadHead = () => {
                         <span>
                             <AiOutlinePlus />
                         </span>
-                        <span>New Lead</span>
+                        <span>Nuevo cliente potencial</span>
                     </Link>
                 </div>
             )}

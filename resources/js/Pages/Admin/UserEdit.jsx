@@ -18,11 +18,11 @@ const Users = ({ user }) => {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Edit User" />
+            <Head title="Editar usuario" />
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">User</h1>
+                    <h1 className="text-3xl font-bold">Usuario</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -39,10 +39,10 @@ const Users = ({ user }) => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<HiOutlineUsers />}>
-                                <Link href="/users">Users</Link>
+                                <Link href="/users">Usuarios</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<FaUser />}>
                                 {user?.name}

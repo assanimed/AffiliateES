@@ -18,12 +18,12 @@ const Dashboard = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Dashboard" />
+            <Head title="Panel de Control" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Dashboard</h1>
+                    <h1 className="text-3xl font-bold">Panel de Control</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -40,9 +40,9 @@ const Dashboard = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
-                            <BreadcrumbItem>Dashboard</BreadcrumbItem>
+                            <BreadcrumbItem>Panel de Control</BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
                 </div>

@@ -14,11 +14,11 @@ const Users = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Manage Users" />
+            <Head title="Usuarios" />
 
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Users</h1>
+                    <h1 className="text-3xl font-bold">Usuarios</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -35,10 +35,10 @@ const Users = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<HiOutlineUsers />}>
-                                Users
+                                Usuarios
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>
@@ -46,7 +46,7 @@ const Users = () => {
             </TopPage>
             <div className="bg-white p-2 mt-5 rounded-md">
                 <div className="px-5 py-2 text-xl font-bold">
-                    <h3>Manage Users</h3>
+                    <h3>Usuarios</h3>
                 </div>
 
                 <div>

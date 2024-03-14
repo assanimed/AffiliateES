@@ -48,7 +48,7 @@ const SideBar = () => {
                             />
                         </span>
                         <span className=" font-gotham font-light">
-                            Telegram Support
+                            Soporte de Telegram
                         </span>
                     </a>
                 </div>

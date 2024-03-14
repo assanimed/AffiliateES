@@ -98,7 +98,7 @@ class UserController extends Controller
 
             return redirect()->to("/users");
         } catch (Exception $err) {
-            return redirect()->back()->with('error', 'Fail to Update User');
+            return redirect()->back()->with('error', 'Error al actualizar el usuario');
         }
     }
 
@@ -162,12 +162,12 @@ class UserController extends Controller
             $user->save();
 
             return response()->json([
-                "success" => "Information Updated Successfull"
+                "success" => "Información actualizada con éxito"
             ], 201);
         } catch (Exception $err) {
             dd($err);
             return response()->json([
-                "error" => "Fail to Update User Information"
+                "error" => "Error al actualizar la información del usuario"
             ], 201);
         }
     }

@@ -13,13 +13,13 @@ const Settings = ({ settingsData }) => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Profile Settings" />
+            <Head title="Configuración del Perfil" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center justify-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold text-center">
-                        Profile Settings
+                        Configuración del Perfil
                     </h1>
                 </div>
             </TopPage>
@@ -38,7 +38,7 @@ const Settings = ({ settingsData }) => {
                                     "group-data-[selected=true]:text-white px-5 rounded-none",
                             }}
                         >
-                            <Tab key="Profile" title="Profile">
+                            <Tab key="Perfil" title="Perfil">
                                 <div>
                                     <Suspense
                                         fallback={

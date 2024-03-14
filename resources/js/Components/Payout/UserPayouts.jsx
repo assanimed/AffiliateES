@@ -12,7 +12,7 @@ const UserPayouts = () => {
     return (
         <div>
             <div className="max-w-[300px] shadow-md rounded p-2 m-2">
-                <h3 className="text-2xl text-slate-700 font-bold">Balance</h3>
+                <h3 className="text-2xl text-slate-700 font-bold">Saldo</h3>
                 <div className="text-3xl text-slate-500 my-5 font-bold">
                     $ {affiliate?.balance}
                 </div>
@@ -22,11 +22,11 @@ const UserPayouts = () => {
                         className=" inline-flex items-center  gap-2 my-2 border-2 px-2 py-1.5 rounded text-indigo-500 border-blue-400"
                     >
                         <BiMoneyWithdraw />
-                        Request Payout
+                        Solicitar pago
                     </Link>
                 ) : (
                     <span className="text-red-600 text-xs">
-                        Minimum Payout Amount {minPayout}$
+                        Monto Mínimo de Pago {minPayout}$
                     </span>
                 )}
             </div>

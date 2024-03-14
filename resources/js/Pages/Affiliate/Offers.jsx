@@ -14,12 +14,12 @@ const Offers = () => {
     } = usePage();
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Offers Listing" />
+            <Head title="Listado de ofertas" />
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
                 <div className="text-white flex items-center gap-3 md:gap-10">
-                    <h1 className="text-3xl font-bold">Offers</h1>
+                    <h1 className="text-3xl font-bold">Ofertas</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
                             classNames={{
@@ -36,10 +36,10 @@ const Offers = () => {
                                 className="text-white"
                                 startContent={<BiHomeAlt />}
                             >
-                                <Link href="/">Home</Link>
+                                <Link href="/">Inicio</Link>
                             </BreadcrumbItem>
                             <BreadcrumbItem startContent={<HiOutlineUsers />}>
-                                <Link href="/users">Offers</Link>
+                                <Link href="/users">Ofertas</Link>
                             </BreadcrumbItem>
                         </Breadcrumbs>
                     </div>

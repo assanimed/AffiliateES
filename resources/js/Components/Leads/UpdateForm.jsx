@@ -16,6 +16,10 @@ const UpdateForm = () => {
     // const assets = useSelector((state) => state?.offer?.assets);
 
     const statuses = ["shipped", "pending"];
+    const esStatus = {
+        shipped: "Enviado",
+        pending: "Pendiente",
+    };
     const handleStatusChange = (e) => setData("status", e.target.value);
 
     const { data, setData } = useForm({
@@ -31,10 +35,6 @@ const UpdateForm = () => {
         updateLead(data);
     };
 
-    if (isError) {
-        console.log("Error", error?.data?.error);
-    }
-
     if (isSuccess) {
         backLink.current.click();
     }
@@ -45,7 +45,7 @@ const UpdateForm = () => {
                 <Link className="w-0 h-0" ref={backLink} href="/leads"></Link>
                 <div className="px-5 flex  items-center justify-between py-2  font-bold">
                     <h3 className="text-xl">
-                        Lead Update{" "}
+                        ID Lead #{" "}
                         <span className=" inline-block px-2 py-1 text-white bg-indigo-500 rounded-md">
                             {givenLead?.id}
                         </span>
@@ -56,7 +56,7 @@ const UpdateForm = () => {
                         // onClick={() => }
                         className=" disabled:cursor-not-allowed disabled:bg-indigo-300 disabled:hover:text-indigo-500 disabled:hover:bg-indigo-300  text-indigo-500 border-indigo-500 border-2  px-10 py-1.5 rounded-lg  hover:bg-indigo-500 hover:text-white transition-all ease-linear shadow-md"
                     >
-                        {isLoading ? <Spinner /> : "Save"}
+                        {isLoading ? <Spinner /> : "Guardar"}
                     </button>
                 </div>
 
@@ -78,14 +78,14 @@ const UpdateForm = () => {
                                 className="block text-gray-700 text-sm font-bold mb-2"
                                 htmlFor="status"
                             >
-                                New Status
+                                Nuevo estado
                             </label>
 
                             <Select
                                 // label="Favorite Animal"
                                 labelPlacement="outside"
                                 name="Status"
-                                placeholder="Lead Status"
+                                placeholder="Estado del cliente potencial"
                                 className="relative overflow-visible rounded-xs w-96 bg-background/0 "
                                 onChange={handleStatusChange}
                                 defaultSelectedKeys={[data?.status]}
@@ -97,7 +97,7 @@ const UpdateForm = () => {
                                         className="bg-red"
                                         value={status}
                                     >
-                                        {status}
+                                        {esStatus[status]}
                                     </SelectItem>
                                 ))}
                             </Select>

@@ -16,7 +16,7 @@ const GridItem = ({ text, value, Icon, diff }) => {
                     {parseInt(diff)}%
                 </span>
                 <span className="text-gray-800 inline-block px-3">
-                    Since Last Month
+                    Desde el Mes Pasado
                 </span>
             </div>
         </div>

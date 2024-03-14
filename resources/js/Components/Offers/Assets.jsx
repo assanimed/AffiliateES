@@ -34,7 +34,7 @@ const Assets = ({ assets }) => {
         const size = e.target.files[0].size / 1024 / 1024;
 
         if (size > 10) {
-            setError("file Size Exceeded 10MB");
+            setError("El tamaño del archivo excede los 10MB");
             return;
         }
 
@@ -128,8 +128,7 @@ const Assets = ({ assets }) => {
             </div>
             {error && (
                 <div className="py-2 text-sm text-red-500">
-                    {" "}
-                    Error: {error}, try again .
+                    {error}, por favor inténtalo de nuevo.
                 </div>
             )}
         </>

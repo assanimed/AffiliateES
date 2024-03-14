@@ -15,7 +15,7 @@ class TrueValue implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (!$value) {
-            $fail('The :attribute must be Checked.');
+            $fail('El campo Política de Privacidad debe ser marcado.');
         }
     }
 }

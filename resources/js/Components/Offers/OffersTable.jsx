@@ -56,7 +56,7 @@ export default function OffersTable() {
             {isLoading && (
                 <div className="flex flex-col justify-center items-center gap-3 my-2">
                     <span className="font-bold text-gray-500">
-                        Data is Loading...
+                        Cargando datos...
                     </span>
                     <Spinner size="lg" />{" "}
                 </div>
@@ -65,7 +65,7 @@ export default function OffersTable() {
                 <OfferTableList data={data?.data} />
             ) : (
                 <h1 className="py-3 text-slate-400 px-2 text-center text-xl font-bold">
-                    No Offers Yet
+                    Aún no hay ofertas
                 </h1>
             )}
             {totalPages > 1 && (
@@ -80,7 +80,7 @@ export default function OffersTable() {
             )}
             {isError && (
                 <h1 className="py-3 px-2 text-center text-xl font-bold">
-                    Lailed to Load Offers
+                    Error al cargar las ofertas
                 </h1>
             )}
         </div>

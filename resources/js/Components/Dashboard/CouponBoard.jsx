@@ -18,13 +18,13 @@ const CouponBoard = ({ coupon }) => {
         <div className="bg-white p-3 self-start rounded shadow-md">
             <div>
                 <span className="text-[10px] text-gray-400">
-                    PROMOTIONAL CODE
+                    CÓDIGO PROMOCIONAL
                 </span>
             </div>
 
             <div className="flex flex-col items-center gap-2 bg-indigo-950 py-1 px-2 rounded text-white">
                 <div>
-                    <h4 className=" text-xs">Your Coupon Code</h4>
+                    <h4 className=" text-xs">Su Código de Cupón</h4>
                 </div>
                 <div>
                     <h2 className=" font-bold text-xl">{coupon}</h2>
@@ -36,14 +36,14 @@ const CouponBoard = ({ coupon }) => {
                     >
                         {copied ? (
                             <>
-                                <span>Copied</span>
+                                <span>Copiado</span>
                                 <span>
                                     <FaCheck />
                                 </span>
                             </>
                         ) : (
                             <>
-                                <span>Copy Code</span>
+                                <span>Copiar Código</span>
                                 <span>
                                     <IoCopyOutline />
                                 </span>

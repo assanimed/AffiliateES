@@ -13,12 +13,7 @@ import { debounce } from "lodash";
 import { Link, usePage } from "@inertiajs/react";
 
 const TableTop = () => {
-    const { searchKey } = useSelector((state) => state?.filter?.searchKey);
     const dispatch = useDispatch();
-
-    const Statuses = ["All", "Approved", "Pending", "Banned"];
-
-    const PageLimits = [5, 10, 20, 50, 100];
 
     const {
         props: { auth },
@@ -31,8 +26,6 @@ const TableTop = () => {
     const handlePageLimitChange = (e) => {
         dispatch(setPageLimit(e.target.value));
     };
-
-    const placements = ["inside", "outside", "outside-left"];
 
     const handleSearchChange = (e) => {
         if (e.target.value.length >= 3) {
@@ -57,7 +50,7 @@ const TableTop = () => {
                     name="search"
                     type="text"
                     onChange={debounceSearch}
-                    placeholder="search for an Offer"
+                    placeholder="Buscar una oferta"
                     className="flex-1 border-none focus:outline-none outline-none border-transparent focus:border-transparent focus:ring-0 w-60"
                 />
             </div>
@@ -71,7 +64,7 @@ const TableTop = () => {
                         <span>
                             <AiOutlinePlus />
                         </span>
-                        <span>New Offer</span>
+                        <span>Nueva Oferta</span>
                     </Link>
                 </div>
             )}
