@@ -127,7 +127,7 @@ const UserLeadsTable = ({ data }) => {
     return (
         <div>
             <div className="">
-                <div className="flex justify-between items-center px-5 my-2">
+                <div className="flex sm:flex-row flex-col gap-2 justify-between items-center px-5 my-2">
                     <h1 className=" text-slate-500">
                         Historial de Clientes Potenciales
                     </h1>
@@ -135,7 +135,7 @@ const UserLeadsTable = ({ data }) => {
                         items={PageLimits}
                         labelPlacement="outside"
                         placeholder="Límite de Páginas"
-                        className="max-w-md py-0 md:w-40"
+                        className="max-w-md py-0 w-40"
                         onChange={handlePageLimitChange}
                         size="sm"
                     >

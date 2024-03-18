@@ -21,7 +21,7 @@ const Dashboard = () => {
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
-                <div className="text-white flex items-center gap-3 md:gap-10">
+                <div className="text-white md:flex-row flex-col flex items-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold">Panel de Control</h1>
                     <div className="flex items-center">
                         <Breadcrumbs

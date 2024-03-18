@@ -40,7 +40,7 @@ class PayoutController extends Controller
         $minPayout = $minPayout ? (float) $minPayout->value : 0;
 
 
-        if ((float) Auth()->user()->affiliate->balance <= $minPayout) {
+        if ((float) Auth()->user()->affiliate->balance < $minPayout) {
 
             return redirect()->to('payouts');
         }

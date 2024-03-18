@@ -30,9 +30,9 @@ const Chart = () => {
     };
 
     return (
-        <div className="bg-white p-3 row-start-7 md:row-start-3 xl:row-start-2 col-span-1 self-start sm:col-span-2 rounded shadow-md">
-            <div className="mb-4 flex items-center px-3 justify-between">
-                <div>
+        <div className="bg-white overflow-auto p-3 row-start-7 md:row-start-3 xl:row-start-2 col-span-1 self-start sm:col-span-2 rounded shadow-md">
+            <div className="mb-4 flex sm:flex-row flex-col items-center px-3 justify-between">
+                <div className=" self-start mb-2 md:mb-0">
                     <span className="text-[10px] text-gray-400">
                         visión general
                     </span>
@@ -64,7 +64,7 @@ const Chart = () => {
                 {isSuccess ? (
                     <div className="relative z-30">
                         <LineChart
-                            h={300}
+                            className=" h-[200px] md:h-[300px] "
                             unit=" $"
                             data={format(data?.data)}
                             dataKey="period"
