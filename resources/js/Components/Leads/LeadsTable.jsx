@@ -26,10 +26,10 @@ import { setSortBy, setSortType } from "@/redux/features/paginate/filterSlice";
 import EditPopOver from "../Admin/EditPopOver";
 
 const columns = [
-    { name: "id", uid: "id" },
+    { name: "ID", uid: "id" },
     { name: "Usuario", uid: "username" },
     { name: "ESTADO", uid: "status" },
-    { name: "creado el", uid: "created_at" },
+    { name: "Creado El", uid: "created_at" },
     { name: "ACCIONES", uid: "actions" },
 ];
 
@@ -154,7 +154,7 @@ const LeadsTable = ({ data }) => {
 
     return (
         <div>
-            <div className="">
+            <div className="w-full overflow-auto">
                 <div className="flex justify-end">
                     <Select
                         // label="Favorite Animal"

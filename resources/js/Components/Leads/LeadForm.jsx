@@ -43,9 +43,12 @@ const LeadForm = () => {
 
     return (
         <div>
-            <form onSubmit={submit} className="w-full bg-white px-5 py-3">
+            <form
+                onSubmit={submit}
+                className="w-full bg-white px-2 md:px-5 py-3"
+            >
                 <Link className="w-0 h-0" ref={backLink} href="/leads"></Link>
-                <div className="px-5 flex  items-center justify-between py-2  font-bold">
+                <div className="px-1 md:px-5 flex gap-2  items-center flex-col md:flex-row justify-between py-2  font-bold">
                     <h3 className="text-xl">Registrar nuevo lead</h3>
                     <button
                         // disabled={processing}
@@ -121,7 +124,7 @@ const LeadForm = () => {
                                 labelPlacement="outside"
                                 name="Status"
                                 placeholder="Estado del cliente potencial"
-                                className="relative overflow-visible rounded-xs w-96 bg-background/0 "
+                                className="relative overflow-visible rounded-xs w-full md:w-96 bg-background/0 "
                                 onChange={handleStatusChange}
                                 defaultSelectedKeys={[data?.role]}
                                 id="roles"

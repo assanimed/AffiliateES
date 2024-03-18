@@ -49,7 +49,7 @@ const TableFilter = () => {
     const debounceSearch = debounce(handleSearchChange, 500);
 
     return (
-        <div className="flex items-center gap-10 justify-between my-3 px-2 md:px-10 ">
+        <div className="flex md:flex-row flex-col items-center gap-10 justify-between my-3 px-2 md:px-10 ">
             <div className="flex bg-white flex-wrap items-center gap-2 shadow-md py-1 px-3 rounded">
                 <div>
                     <CiSearch className="text-2xl font-bold" />
@@ -70,7 +70,7 @@ const TableFilter = () => {
                     // label="Favorite Animal"
                     labelPlacement="outside"
                     placeholder="Estado"
-                    className="max-w-xs py-0 w-32"
+                    className="max-w-xs py-0 w-48 md:w-32"
                     onChange={handleStatusChange}
                 >
                     {Statuses.map((status) => (

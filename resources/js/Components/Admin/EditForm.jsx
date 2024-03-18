@@ -82,7 +82,7 @@ const EditForm = ({ user }) => {
                 </div>
             )}
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
-                <div className="px-5 flex items-center justify-between py-2  font-bold">
+                <div className="px-5 flex md:flex-row flex-col gap-2 items-center justify-between py-2  font-bold">
                     <h3 className="text-xl">Editar usuario</h3>
                     <button
                         disabled={processing}
@@ -97,7 +97,7 @@ const EditForm = ({ user }) => {
                     className="bg-slate-300 h-[2px] rounded-full"
                 />
                 <h2 className="text-xl my-2">Información básica</h2>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -133,7 +133,7 @@ const EditForm = ({ user }) => {
                         />
                     </div>
                 </div>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -172,7 +172,7 @@ const EditForm = ({ user }) => {
 
                 <hr />
                 <h2 className="text-xl my-2">Estado de Afiliado</h2>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -223,7 +223,7 @@ const EditForm = ({ user }) => {
                 <h2 className="text-xl my-2">
                     Información de Facturación / Perfil
                 </h2>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -241,7 +241,7 @@ const EditForm = ({ user }) => {
                         />
                     </div>
                 </div>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -294,7 +294,7 @@ const EditForm = ({ user }) => {
                 <hr />
 
                 <h2 className="text-xl my-2">Enlaces Externos</h2>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -338,7 +338,7 @@ const EditForm = ({ user }) => {
                         />
                     </div>
                 </div>
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -362,7 +362,7 @@ const EditForm = ({ user }) => {
                     </div>
                 </div>
 
-                <div className="flex gap-4 md:gap-10">
+                <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                     <div className="mb-4 flex-1">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -396,7 +396,7 @@ const EditForm = ({ user }) => {
                     Cambiar Rol
                 </h2>
                 {showRole && (
-                    <div className="flex gap-4 md:gap-10">
+                    <div className="flex md:flex-row flex-col sm:gap-4 md:gap-10">
                         <div className="mb-4 flex-1 ">
                             <label
                                 className="block text-gray-700 text-sm font-bold mb-2"

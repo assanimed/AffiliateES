@@ -20,7 +20,7 @@ const Leads = () => {
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
-                <div className="text-white flex items-center gap-3 md:gap-10">
+                <div className="text-white md:flex-row flex-col  flex items-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold">Clientes potenciales</h1>
                     <div className="flex items-center">
                         <Breadcrumbs
@@ -47,7 +47,7 @@ const Leads = () => {
                     </div>
                 </div>
             </TopPage>
-            <div className="bg-white p-2 mt-5 rounded-md">
+            <div className="bg-white md:p-2 py-2 md:mt-5 mt-5 rounded-md">
                 <div>
                     <LeadsList />
                 </div>

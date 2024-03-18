@@ -58,9 +58,9 @@ export default function Authenticated({ user, children }) {
                                 <SideBar />
                             </div>
                         </div>
-                        <div className=" flex-1">
+                        <div className=" flex-1  w-screen overflow-auto">
                             <Header />
-                            <main className="py-3 px-5 max-w-[1400px] mx-auto ">
+                            <main className="py-1 px-1 md:py-3 md:px-5 max-w-[1400px] mx-auto ">
                                 {children}
                             </main>
                         </div>

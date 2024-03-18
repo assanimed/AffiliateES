@@ -9,8 +9,6 @@ import { FaUser } from "react-icons/fa";
 import EditForm from "@/Components/Admin/EditForm";
 
 const Users = ({ user }) => {
-    console.log("USER", user);
-
     const [info, setInfo] = useState(user);
     const {
         props: { auth },
@@ -21,7 +19,7 @@ const Users = ({ user }) => {
             <Head title="Editar usuario" />
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
-                <div className="text-white flex items-center gap-3 md:gap-10">
+                <div className="text-white md:flex-row flex-col flex items-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold">Usuario</h1>
                     <div className="flex items-center">
                         <Breadcrumbs

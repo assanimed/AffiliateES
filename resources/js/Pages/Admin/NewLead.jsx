@@ -21,7 +21,7 @@ const NewLead = () => {
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
-                <div className="text-white flex items-center gap-3 md:gap-10">
+                <div className="text-white md:flex-row flex-col flex items-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold">
                         Nuevo cliente potencial
                     </h1>
