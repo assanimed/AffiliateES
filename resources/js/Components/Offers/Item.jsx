@@ -10,7 +10,7 @@ import { Link } from "@inertiajs/react";
 const Item = ({ offer }) => {
     return (
         <div className="flex items-center gap-4 shadow px-3 py-2 flex-col xl:flex-row ">
-            <div className=" h-full md:h-[300px] aspect-square">
+            <div className=" h-full md:h-[230px]  lg:h-[250px] xl:h-[300px] aspect-square">
                 <Carousel images={offer?.assets} />
             </div>
             <div className="flex justify-between self-start w-full h-full flex-col gap-3 my-2">

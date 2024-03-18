@@ -68,7 +68,7 @@ const LogoPlace = ({ image, setData, file }) => {
                 onClick={handleClick}
                 className="px-5 py-2 bg-indigo-500 text-white max-w-40 rounded"
             >
-                Change
+                Cambiar
             </button>
             {image ? (
                 <button
@@ -78,7 +78,7 @@ const LogoPlace = ({ image, setData, file }) => {
                     onClick={handleDelete}
                     className="px-5 py-2 bg-red-500 text-white max-w-40 rounded"
                 >
-                    {isLoading ? "Deleting..." : "Delete"}
+                    {isLoading ? "Eliminar..." : "Eliminar"}
                 </button>
             ) : (
                 ""

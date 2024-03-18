@@ -39,7 +39,7 @@ const TableTop = () => {
 
     const debounceSearch = debounce(handleSearchChange, 500);
     return (
-        <div className="flex items-center gap-10 justify-between my-3 px-2  ">
+        <div className="flex items-center flex-col-reverse md:flex-row gap-4 md:gap-10 justify-between my-3 px-2  ">
             <div className="flex bg-white flex-wrap items-center gap-2 shadow-md py-1 px-3 rounded">
                 <div>
                     <CiSearch className="text-2xl font-bold" />
