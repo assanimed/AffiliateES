@@ -34,7 +34,7 @@ const FulfillForm = () => {
         <div>
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
                 <Link className="w-0 h-0" ref={backLink} href="/payouts"></Link>
-                <div className="px-5 flex  items-center justify-between py-2  font-bold">
+                <div className="px-5 flex sm:flex-row flex-col gap-2  items-center justify-between py-2  font-bold">
                     <h3 className="text-xl">Cumplir con la solicitud</h3>
                     <button
                         type="submit"

@@ -19,7 +19,7 @@ const Profile = () => {
 
             <div className="text-white flex items-center gap-3 md:gap-10"></div>
             <TopPage>
-                <div className="text-white flex items-center gap-3 md:gap-10">
+                <div className="text-white flex sm:flex-row flex-col items-center gap-3 md:gap-10">
                     <h1 className="text-3xl font-bold">Perfil</h1>
                     <div className="flex items-center">
                         <Breadcrumbs

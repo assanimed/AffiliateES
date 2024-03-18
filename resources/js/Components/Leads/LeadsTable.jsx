@@ -154,7 +154,7 @@ const LeadsTable = ({ data }) => {
 
     return (
         <div>
-            <div className="w-full overflow-auto">
+            <div className="w-full">
                 <div className="flex justify-end">
                     <Select
                         // label="Favorite Animal"

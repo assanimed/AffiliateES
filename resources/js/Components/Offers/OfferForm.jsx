@@ -27,7 +27,7 @@ const OfferhtmlForm = () => {
     return (
         <div>
             <form onSubmit={submit} className="w-full bg-white px-5 py-3">
-                <div className="px-5 flex  items-center justify-between py-2  font-bold">
+                <div className="px-5 sm:flex-row flex-col gap-2 flex  items-center justify-between py-2  font-bold">
                     <h3 className="text-xl">Agregar nueva oferta</h3>
                     <button
                         // disabled={processing}
