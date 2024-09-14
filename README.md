@@ -61,3 +61,6 @@ A powerful and feature-rich affiliate website built with Laravel, MySQL, React, 
    email: demo_user@gmail.com
    password: demo12345
    ```
+
+
+---
