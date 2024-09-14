@@ -1,7 +1,5 @@
 # Affiliate Website Project
 
-![Project Logo](path/to/logo.png)
-
 A powerful and feature-rich affiliate website built with Laravel, MySQL, React, and Redux. This project offers a comprehensive solution for managing affiliate marketing campaigns, tracking leads, and analyzing performance through intuitive dashboards for both administrators and users.
 
 ## Table of Contents
@@ -35,28 +33,31 @@ A powerful and feature-rich affiliate website built with Laravel, MySQL, React, 
 ## Screenshots
 
 ### Admin Dashboard
-![Admin Dashboard](path/to/admin-dashboard-screenshot.png)
+![Admin Dashboard](./screenshots/analytics.png)
 
 ### User Dashboard
-![User Dashboard](path/to/user-dashboard-screenshot.png)
+![User Dashboard](./screenshots/dashboard.png)
 
 ### Offer Management
-![Offer Management](path/to/offer-management-screenshot.png)
+![Offer Management](./screenshots/offers.png)
 
 ### Lead Analytics
-![Lead Analytics](path/to/lead-analytics-screenshot.png)
+![Lead Analytics](./screenshots/leads.png)
 
 
 ## Demo
 
-1. Start the Laravel development server:
-   ```
-   php artisan serve
-   ```
+1. visit: 
+   [affiliate.assanimed.me](http://affiliate.assanimed.me)
+   
 
-2. In a separate terminal, start the React development server:
+2. for Admin use:
    ```
-   npm run watch
+   email: admin_user@gmail.com
+   password: admin12345
    ```
-
-3. Access the application at `http://localhost:8000`
+2. for User use:
+   ```
+   email: demo_user@gmail.com
+   password: demo12345
+   ```
